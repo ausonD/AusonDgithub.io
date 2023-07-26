@@ -66,16 +66,16 @@ audio.addEventListener('ended', function () {
 
 function togglePlay() {
     if (isPlaying) {
-        audio.pause();
-        audio.currentTime = 0;
+
         //提交函数
         submitQuiz();
         //隐藏内容
-        hideText()
+        hideText();
     }
 
     else {
         audio.play();
+        showText();
     }
     isPlaying = !isPlaying;
 }
@@ -91,6 +91,12 @@ function submitQuiz() {
     var form = document.getElementById("quiz-form");
     var popup = document.createElement("div");
     popup.id = "popup";
+    popup.style.position = 'absolute';
+    popup.style.top = '50%';
+    popup.style.left = '50%';
+    popup.style.transform = 'translate(-50%, -50%)';
+    popup.style.border = '2px solid gray';
+
 
     // 获取答案
     for (var i = 1; i <= 5; i++) {
@@ -131,9 +137,18 @@ function submitQuiz() {
 function hideText() {
     var pTag = document.getElementById("myParagraph");
     pTag.style.display = "none";
+    var pTaga = document.getElementById("control-btn");
+    pTaga.style.display = "none";
 }
 
+//显示文字,关闭计时器按钮
+function showText() {
+    var pTag = document.getElementById("myParagraph");
+    pTag.style.display = "flex";
 
+
+
+}
 
 
 
