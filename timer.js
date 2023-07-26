@@ -95,7 +95,7 @@ function submitQuiz() {
     popup.style.top = '50%';
     popup.style.left = '50%';
     popup.style.transform = 'translate(-50%, -50%)';
-    popup.style.border = '2px solid gray';
+    popup.style.border = '3px solid gray';
 
 
     // 获取答案
@@ -111,12 +111,14 @@ function submitQuiz() {
 
     // 显示答案
     var answerText = document.createElement("p");
-    answerText.innerHTML = "Thank you for your participation! <BR>Please make sure to answer every question.<br>Click the 'Copy' button below and send the copied content to your tester.<br>Your answer is:<br>" + answers.join(", ");
+    answerText.innerHTML = "Thank you for your participation! <BR>Please make sure to answer every question.<br>Click the 'Copy' button below and send the copied content to your tester.<br>Click 'stop' to pause the music if you want.<br><br>Your answer is:<br>" + answers.join(", ");
     popup.appendChild(answerText);
 
     // 复制选项
     var copyBtn = document.createElement("button");
-    copyBtn.innerHTML = "COPY";
+    copyBtn.innerHTML = "Copy";
+    copyBtn.style.width = "50px"
+
     copyBtn.onclick = function () {
         html2canvas(document.body).then(function (canvas) {
             canvas.toBlob(function (blob) {
@@ -126,25 +128,43 @@ function submitQuiz() {
             }, 'image/png');
         });
     };
+    //暂停音乐
+    var pausemusicbtn =
+        document.createElement("button");
+    pausemusicbtn.style.width = "50px"
+    pausemusicbtn.innerHTML = "Stop";
+    pausemusicbtn.onclick = function () {
+        audio.pause();
+        pausemusicbtn.style.display = "none";
+
+    }
 
     popup.appendChild(copyBtn);
+    popup.appendChild(pausemusicbtn);
+
 
     // 显示弹窗
     document.body.appendChild(popup);
 }
 
-//隐藏文字
+//隐藏文字,关闭计时器按钮
 function hideText() {
     var pTag = document.getElementById("myParagraph");
     pTag.style.display = "none";
+
     var pTaga = document.getElementById("control-btn");
     pTaga.style.display = "none";
+
+
+
 }
 
-//显示文字,关闭计时器按钮
+//显示文字,隐藏notice
 function showText() {
     var pTag = document.getElementById("myParagraph");
     pTag.style.display = "flex";
+    var pTagb = document.getElementById("notice");
+    pTagb.style.display = "none";
 
 
 
