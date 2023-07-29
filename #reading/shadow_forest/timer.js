@@ -55,9 +55,11 @@ function pad(val) {
 // 音乐播放
 // 音乐播放
 // 音乐播放
-var audio = new Audio("FG.mp3"); // 音乐文件路径
+var audio = new Audio("../music/FG.mp3"); // 音乐文件路径
 var isPlaying = false;
 
+
+//播完继续循环播放
 audio.addEventListener('ended', function () {
     audio.currentTime = 0;
     audio.play();
@@ -111,13 +113,13 @@ function submitQuiz() {
 
     // 显示答案
     var answerText = document.createElement("p");
-    answerText.innerHTML = "Thank you for your participation! <BR>Please make sure to answer every question.<br>Click the 'Copy' button below and send the copied content to your tester.<br>Click 'stop' to pause the music if you want.<br><br>Your answer is:<br>" + answers.join(", ");
+    answerText.innerHTML = "Thank you for your participation! <BR>Please make sure to answer every question.<br>Click the 'Copy' button below and send the copied content to your tester.<br>Click the right buttom to pause the music if you want.<br><br>Shadows Unveiled+ForestGump<br>Your answer is: <br>" + answers.join(", ") + "<br>";
     popup.appendChild(answerText);
 
     // 复制选项
     var copyBtn = document.createElement("button");
     copyBtn.innerHTML = "Copy";
-    copyBtn.style.width = "50px";
+    copyBtn.style.width = "65px";
 
 
     copyBtn.onclick = function () {
@@ -132,11 +134,7 @@ function submitQuiz() {
                 });
             }, 'image/png');
         });
-        copyBtn.style.display = "none";
-        var noticespan = document.createElement("span");
-        noticespan.innerHTML = "&nbsp&nbsp&nbspPlease wait until the alert is shown...";
-        noticespan.style.fontSize = "65%";
-        pausemusicbtn.parentNode.insertBefore(noticespan, pausemusicbtn.nextSibling);
+
 
 
 
@@ -144,13 +142,25 @@ function submitQuiz() {
     //暂停音乐
     var pausemusicbtn =
         document.createElement("button");
-    pausemusicbtn.style.width = "50px"
-    pausemusicbtn.innerHTML = "Stop";
+    var playing2 = true;
+    pausemusicbtn.style.width = "65px"
+    pausemusicbtn.innerHTML = "Pause";
     pausemusicbtn.onclick = function () {
-        audio.pause();
-        pausemusicbtn.style.display = "none";
+        if (playing2 == true) {
+            audio.pause();
+            pausemusicbtn.innerHTML = "Resume";
 
-    };
+        }
+
+        else {
+            audio.play();
+
+            pausemusicbtn.innerHTML = "Pause";
+
+        }
+        playing2 = !playing2;
+
+    }
 
     popup.appendChild(copyBtn);
     popup.appendChild(pausemusicbtn);
