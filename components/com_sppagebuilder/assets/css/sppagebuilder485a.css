@@ -1,3 +1,6 @@
+@import url('../../../../zzcss/globeFont.css');
+
+
 #sp-page-builder {
     position: relative
 }
@@ -10692,5 +10695,5 @@ img.sppb-element-lazy.sppb-element-loaded {
 
 @font-face {
     font-family: 'Chivo';
-    src: url('/zzfont/Chivo.ttf');
+    src: url('../../../../zzfont/Chivo.ttf');
 }
