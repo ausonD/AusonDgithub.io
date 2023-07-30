@@ -1,4 +1,4 @@
-@import url('../../../../zzcss/globeFont.css');
+@import url("../../../../zzcss/globeFont.css");
 
 
 #sp-page-builder {
@@ -10691,9 +10691,4 @@ img.sppb-element-lazy.sppb-element-loaded {
     100% {
         opacity: 1
     }
-}
-
-@font-face {
-    font-family: 'Chivo';
-    src: url('../../../../zzfont/Chivo.ttf');
 }
