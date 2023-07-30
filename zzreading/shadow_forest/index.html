@@ -14,13 +14,19 @@
 
 
     <body>
+
         <!-- 计时器 -->
 
         <div
-            style="background-color: #f6f6f6; justify-content: center;font-size: 16px; font-weight: bold; display: flex; align-items: center; padding: 10px; border-radius: 5px; box-shadow: 0 5px 10px rgba(0,0,0,0.1); line-height: 1;">
-            <div id="timer" style="margin-right: 10px;">00:00:00</div>
-            <button id="control-btn"
-                style="font-size: 14px; padding: 6px 12px; background-color: #1abc9c; color: #fff; border: none; border-radius: 3px; cursor: pointer;">Begin</button>
+            style="background-color: #f6f6f6; justify-content: space-between;font-size: 16px; font-weight: bold; display: flex; align-items: center; padding: 10px; border-radius: 5px; box-shadow: 0 5px 10px rgba(0,0,0,0.1); line-height: 1;">
+            <img src="../image/back.png" alt="Back" style="float: left; width: 30px;"
+                onclick="backConfirmation()">&nbsp;
+            <img src="../image/reload.png" alt="Reload" style="float: left; width: 23px" onclick="reloadConfirmation()">
+            <span style="margin: 0 auto;">
+                <span id="timer" style="margin-right: 10px;">00:00:00</span>
+                <button id="control-btn"
+                    style="font-size: 14px; padding: 6px 12px; background-color: #003950; color: #fff; border: none; border-radius: 3px; cursor: pointer;">Begin</button>
+            </span>
         </div>
 
         <!-- 开始提示内容 -->
@@ -145,8 +151,27 @@
             </div>
         </div>
 
+        <!--确认重新加载-->
+        <div id="confirmation-reload"
+            style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); display: none; justify-content: center; align-items: center;">
+            <div style="background-color: #fff; padding: 20px; border-radius: 5px;">
+                <p>Reload the page</p>
+                <button onclick="hideConfirmation()">Cancel</button>
+                <button onclick="location.reload(); return false;">Confirm</button>
+            </div>
+        </div>
+
+        <div id="confirmation-back"
+            style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); display: none; justify-content: center; align-items: center;">
+            <div style="background-color: #fff; padding: 20px; border-radius: 5px;">
+                <p>Return to the article selection</p>
+                <button onclick="hideConfirmation()">Cancel</button>
+                <button onclick="window.history.back();">Confirm</button>
+            </div>
+        </div>
+
         <!--script 链接-->
-        <script src="timer.js"></script>
+        <script src=" timer.js"></script>
 
 
 

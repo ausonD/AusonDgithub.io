@@ -194,6 +194,24 @@ function showText() {
 };
 
 
+//重新加载 退回确认
+function reloadConfirmation() {
+    var modal = document.getElementById("confirmation-reload");
+    modal.style.display = "flex";
+}
+function backConfirmation() {
+    var modal = document.getElementById("confirmation-back");
+    modal.style.display = "flex";
+}
+
+function hideConfirmation() {
+    var modal1 = document.getElementById("confirmation-reload");
+    modal1.style.display = "none";
+    var modal2 = document.getElementById("confirmation-back");
+    modal2.style.display = "none";
+}
+
+
 
 // 绑定按钮事件
 controlBtn.addEventListener("click", toggleTimer);
