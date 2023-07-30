@@ -10692,3 +10692,8 @@ img.sppb-element-lazy.sppb-element-loaded {
         opacity: 1
     }
 }
+
+@font-face {
+    font-family: 'Chivo';
+    src: url('../../../../zzfont/Chivo.ttf');
+}
