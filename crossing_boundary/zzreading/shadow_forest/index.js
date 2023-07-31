@@ -1,6 +1,3 @@
-
-
-
 // 获取显示计时器的元素和按钮元素
 var timerEl = document.getElementById("timer");
 var controlBtn = document.getElementById("control-btn");
@@ -34,7 +31,7 @@ function toggleTimer() {
         isRunning = true;
     }
     controlBtn.removeEventListener("click", toggleTimer);
-}
+};
 
 // 将数字转换为两位数的字符串
 function pad(val) {
@@ -45,8 +42,7 @@ function pad(val) {
         return valString;
     }
 
-}
-
+};
 
 
 
@@ -83,7 +79,7 @@ function togglePlay() {
 
     }
 
-}
+};
 
 
 
@@ -147,7 +143,7 @@ function ifPausemusic() {
     }
     playing2 = !playing2;
 
-}
+};
 
 //隐藏试题,关闭计时器按钮，关闭提交确认框,feedback框显示
 function hideText() {
@@ -182,11 +178,11 @@ function showText() {
 function reloadConfirmation() {
     let modal = document.getElementById("confirmation-reload");
     modal.style.display = "flex";
-}
+};
 function backConfirmation() {
     var modal = document.getElementById("confirmationBackWindow");
     modal.style.display = "flex";
-}
+};
 
 function hideConfirmation() {
     let modal1 = document.getElementById("confirmation-reload");
@@ -197,7 +193,7 @@ function hideConfirmation() {
 
     let modal3 = document.getElementById("confirmationSubmitWindow");
     modal3.style.display = "none";
-}
+};
 
 //setting 设置页面
 
@@ -207,12 +203,11 @@ var settingPageID = document.getElementById("settingPage");
 
 function openSettingPage() {
     settingPageID.style.display = "flex";
-}
+};
 
 function closeSettingPage() {
     settingPageID.style.display = "none";
-}
-
+};
 
 
 
@@ -225,27 +220,102 @@ function updateFontSize(value) {
     noticeID.style.fontSize = value + "px";
     // 更新字体大小范围滑动条的数值显示
     document.getElementById("FontValue").textContent = value;
-}
+};
 
-// 还原字体大小
+// 还原字体大小,时间长短
 var paragraphFontSize = document.getElementById("paragraphFontNum");
-function resetFontSize() {
-    paragraphFontSize.value = 16;
-    updateFontSize(16);
+var readingspeed999 = document.getElementById("estimatedTime");
+function resetValue() {
+    paragraphFontSize.value = 18;
+    updateFontSize(18);
+    readingspeed999.value = 900;
+    updateTime(900);
+};
+
+
+
+function updateTime(value) {
+    timing = value * 1000;
+    document.getElementById("timeValue").textContent = value;
 }
 
 
 
 
 
+//scrolling check
+
+var timing = 900000;
+
+var scrollingInput = document.getElementById('scrollingInput');
+var scrollingCheckbox = document.getElementById('scrollingCheck');
+var inputElement999 = document.getElementById("estimatedTime");
+var isScrolling = true;
 
 
 
 
 
+
+//滚动函数
+function scrollToBottom() {
+    if (scrollingCheckbox.checked) {
+        const scrollingBox = document.getElementById('mainParagraph');
+        const scrollHeight = scrollingBox.scrollHeight; // 获取div的滚动高度
+        let startTime = null;
+
+        function scroll(timestamp) {
+            if (!startTime) {
+                startTime = timestamp;
+            }
+            let timeElapsed = timestamp - startTime;
+            let progress = Math.min(timeElapsed / timing, 1); // n秒钟*1000内完成滚动
+            scrollingBox.scrollTo(0, progress * scrollHeight); // 平滑滚动到底部
+
+            if (progress < 1) {
+                window.requestAnimationFrame(scroll); // 继续调用自身实现动画效果
+                // 增加额外的刷新次数
+
+            }
+        }
+
+        function startScrolling() {
+            window.requestAnimationFrame(scroll);
+        }
+
+        setTimeout(startScrolling, 0); // 延迟10秒钟开始滚动
+        controlBtn.removeEventListener("click", scrollToBottom);
+
+    }
+};
 
 
 
 // 绑定按钮事件
 controlBtn.addEventListener("click", toggleTimer);
 controlBtn.addEventListener("click", togglePlay);
+
+
+scrollingCheckbox.addEventListener('change', () => {
+    if (scrollingCheckbox.checked) {
+        isScrolling = true;
+        scrollingInput.style.display = 'block';
+
+
+    } else {
+        isScrolling = false;
+        scrollingInput.style.display = 'none';
+    }
+});
+
+
+controlBtn.addEventListener("click", scrollToBottom);
+
+
+
+
+
+
+
+
+
