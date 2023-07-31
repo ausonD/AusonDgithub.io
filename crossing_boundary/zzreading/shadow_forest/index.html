@@ -17,13 +17,29 @@
     <body>
 
 
-        <!-- 计时器 -->
+        <!-- 小图标 计时器 -->
 
         <div
             style="background-color: #f6f6f6; justify-content: space-between;font-size: 16px; font-weight: bold; display: flex; align-items: center; padding: 10px; border-radius: 5px; box-shadow: 0 5px 10px rgba(0,0,0,0.1); line-height: 1;">
-            <img src="../image/back.png" alt="Back" style="float: left; width: 30px;"
-                onclick="backConfirmation()">&nbsp;
+
+
+
+            <img src="../image/back.png" alt="Back" style="float: left; width: 30px;" onclick="backConfirmation()">
+
+            <span style="width: 7px;"></span>
+
             <img src="../image/reload.png" alt="Reload" style="float: left; width: 23px" onclick="reloadConfirmation()">
+
+            <span style="width: 11px;"></span>
+
+            <img src="../image/setting.png" alt="setting" style="float: left; width: 23px" id="setting"
+                onclick="openSettingPage()">
+
+
+
+
+            <!--  计时器 -->
+
             <span style="margin: 0 auto;">
                 <span id="timer" style="margin-right: 10px;">00:00:00</span>
                 <button id="control-btn"
@@ -33,7 +49,7 @@
 
         <!-- 开始提示内容 -->
         <div id="notice"
-            style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); height:10%x;width: 33%; padding:10px;border:2px solid gray">
+            style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); height:10%x;width: 33%; padding:10px;border:2px solid gray ;font-size: 16px;">
 
             <b> Read following instructions carefully before the
                 test:<br><br></b>
@@ -53,9 +69,9 @@
 
 
         <!-- 正文文本框 -->
-        <div style="display: none; height: 90vh;padding-left:20px;padding-right:20px;" id="myParagraph">
-            <div
-                style="flex: 1; overflow: auto; padding: 20px; border: 3px solid #b6b5b2 ;border-right: 1.5px; flex-basis: 60%;">
+        <div style="display: none; height: 90vh;padding-left:20px;padding-right:20px;font-size: 16px;" id="myParagraph">
+            <div style="flex: 1; overflow: auto; padding: 20px; border: 3px solid #b6b5b2 ;border-right: 1.5px; flex-basis: 60%; "
+                id="mainParagraph">
                 <h1>Shadows Unveiled</h1>
                 <p class="text">(1) In the harsh and unforgiving land of Aridium, where the sun mercilessly tormented
                     the barren
@@ -177,7 +193,7 @@
             </div>
 
         </div>
-
+        <!--重新加载-->
         <div id="confirmation-reload"
             style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); display: none; justify-content: center; align-items: center;">
             <div style="background-color: #fff; padding: 20px; border-radius: 5px;">
@@ -186,6 +202,7 @@
                 <button onclick="location.reload(); return false;">Confirm</button>
             </div>
         </div>
+        <!--回退-->
 
         <div id="confirmationBackWindow"
             style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); display: none; justify-content: center; align-items: center;">
@@ -197,6 +214,7 @@
             </div>
         </div>
 
+        <!--确认提交-->
         <div id="confirmationSubmitWindow"
             style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); display: none; justify-content: center; align-items: center;">
             <div style="background-color: #fff; padding: 20px; border-radius: 5px;">
@@ -207,6 +225,39 @@
         </div>
 
 
+        <!--设置页面-->
+        <div class="overlay" id="settingPage" style="display: none;">
+            <div class="modal">
+
+                <h2>Setting</h2>
+                <p>
+                    <label for="paragraphFontNum">Font Size</label>
+                    <input type="range" id="paragraphFontNum" name="paragraphFontNum" min="12" max="30" value="16"
+                        oninput="updateFontSize(this.value)">
+
+                    <output id="FontValue">16</output>
+
+
+
+                    <button style="margin-left:30px ;" onclick="resetFontSize()">Reset</button>
+                    <button onclick="closeSettingPage()">Confirm</button>
+                </p>
+
+
+                <!--设置速度-->
+                <!--                 <p>
+                    <label for="sliderSpeed">Scrolling speed</label>
+                    <input type="range" id="sliderSpeed" name="slider" min="0.5" max="3.0" value="1.0"
+                        oninput="updateFontSize(this.value)">
+
+
+                    <button style="margin-left:30px ;" onclick="resetFontSize()">Reset</button>
+                    <button onclick="closeSettingPage()">Confirm</button>
+                </p> -->
+
+            </div>
+        </div>
+
 
 
 
@@ -215,7 +266,7 @@
 
 
         <!--script 链接-->
-        <script src=" timer.js"></script>
+        <script src=" index.js"></script>
 
 
 

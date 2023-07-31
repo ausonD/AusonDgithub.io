@@ -168,10 +168,10 @@ function hideText() {
 
 //显示文字,隐藏notice
 function showText() {
-    var paragraph = document.getElementById("myParagraph");
+    let paragraph = document.getElementById("myParagraph");
     paragraph.style.display = "flex";
-    var paragraphb = document.getElementById("notice");
-    paragraphb.style.display = "none";
+    let noticeID = document.getElementById("notice");
+    noticeID.style.display = "none";
 
 
 
@@ -180,7 +180,7 @@ function showText() {
 
 //重新加载 退回/取消  弹窗显示
 function reloadConfirmation() {
-    var modal = document.getElementById("confirmation-reload");
+    let modal = document.getElementById("confirmation-reload");
     modal.style.display = "flex";
 }
 function backConfirmation() {
@@ -189,15 +189,60 @@ function backConfirmation() {
 }
 
 function hideConfirmation() {
-    var modal1 = document.getElementById("confirmation-reload");
+    let modal1 = document.getElementById("confirmation-reload");
     modal1.style.display = "none";
 
-    var modal2 = document.getElementById("confirmationBackWindow");
+    let modal2 = document.getElementById("confirmationBackWindow");
     modal2.style.display = "none";
 
-    var modal3 = document.getElementById("confirmationSubmitWindow");
+    let modal3 = document.getElementById("confirmationSubmitWindow");
     modal3.style.display = "none";
 }
+
+//setting 设置页面
+
+
+// 打开对话框  关闭对话框
+var settingPageID = document.getElementById("settingPage");
+
+function openSettingPage() {
+    settingPageID.style.display = "flex";
+}
+
+function closeSettingPage() {
+    settingPageID.style.display = "none";
+}
+
+
+
+
+// 更新字体大小(notice+文章)
+var myParagraphID = document.getElementById("myParagraph");
+var noticeID = document.getElementById("notice");
+
+function updateFontSize(value) {
+    myParagraphID.style.fontSize = value + "px";
+    noticeID.style.fontSize = value + "px";
+    // 更新字体大小范围滑动条的数值显示
+    document.getElementById("FontValue").textContent = value;
+}
+
+// 还原字体大小
+var paragraphFontSize = document.getElementById("paragraphFontNum");
+function resetFontSize() {
+    paragraphFontSize.value = 16;
+    updateFontSize(16);
+}
+
+
+
+
+
+
+
+
+
+
 
 
 
