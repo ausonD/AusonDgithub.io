@@ -16,6 +16,7 @@
 
     <body>
 
+
         <!-- 计时器 -->
 
         <div
@@ -42,7 +43,7 @@
             2. Limit your answering time to 15
             minutes.<br>
             3. Make sure to provide an answer for each question.<br>
-            4. Once you are ready, click the green "begin" button to start the test.
+            4. Once you are ready, click "begin" button to start.
 
 
         </div>
@@ -51,7 +52,7 @@
 
 
 
-        <!-- 文本框 -->
+        <!-- 正文文本框 -->
         <div style="display: none; height: 90vh;padding-left:20px;padding-right:20px;" id="myParagraph">
             <div
                 style="flex: 1; overflow: auto; padding: 20px; border: 3px solid #b6b5b2 ;border-right: 1.5px; flex-basis: 60%;">
@@ -152,7 +153,31 @@
             </div>
         </div>
 
-        <!--确认重新加载-->
+        <!--确认重新加载/退回/提交/提交后显示框-->
+
+        <!--feedback-->
+        <div id="feedback"
+            style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); height:10%x;width: 40%; padding:15px;border:3px solid gray;display: none">
+            <div>
+                <span>
+                    Thank you for your participation! <BR>Please make sure to answer every question.<br>Click the 'Copy'
+                    button below and send the copied content to your tester.<br>Click the right buttom to pause the
+                    music if you want.<br><br>Shadows Unveiled + ForestGump<br>Your answers are:</span>
+
+                <div id="answer"> </div>
+
+
+
+
+
+
+                <div style="height: 25px;"></div>
+                <button onclick="copyPage()" style="width:70px">Copy</button>
+                <button id="musicPauseBtn" onclick="ifPausemusic()" style="width:70px">Pause</button>
+            </div>
+
+        </div>
+
         <div id="confirmation-reload"
             style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); display: none; justify-content: center; align-items: center;">
             <div style="background-color: #fff; padding: 20px; border-radius: 5px;">
@@ -162,15 +187,32 @@
             </div>
         </div>
 
-        <div id="confirmation-back"
+        <div id="confirmationBackWindow"
             style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); display: none; justify-content: center; align-items: center;">
             <div style="background-color: #fff; padding: 20px; border-radius: 5px;">
                 <p>Return to the Reading Test</p>
                 <button onclick="hideConfirmation()">Cancel</button>
                 <button
-                    onclick="window.location.href='https&#58;&#47;&#47;ausond.github.io/crossing_boundary/index.php/reading-test.html'">Confirm</button>
+                    onclick="window.location.href='https&#58;&#47;&#47;ausond.github.io/index.php/reading-test.html'">Confirm</button>
             </div>
         </div>
+
+        <div id="confirmationSubmitWindow"
+            style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); display: none; justify-content: center; align-items: center;">
+            <div style="background-color: #fff; padding: 20px; border-radius: 5px;">
+                <p>Submit the paper</p>
+                <button onclick="hideConfirmation()">Cancel</button>
+                <button id="submitConformBtn" onclick="submitQuiz();hideText();toggleTimer();">Confirm</button>
+            </div>
+        </div>
+
+
+
+
+
+
+
+
 
         <!--script 链接-->
         <script src=" timer.js"></script>

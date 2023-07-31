@@ -16,7 +16,6 @@ function toggleTimer() {
         // 暂停计时
         clearInterval(timer);
         isRunning = false;
-        controlBtn.innerHTML = "Begin";
     } else {
         // 开始计时
         timer = setInterval(function () {
@@ -33,8 +32,8 @@ function toggleTimer() {
         }, 1000);
 
         isRunning = true;
-        controlBtn.innerHTML = "Submit";
     }
+    controlBtn.removeEventListener("click", toggleTimer);
 }
 
 // 将数字转换为两位数的字符串
@@ -45,6 +44,7 @@ function pad(val) {
     } else {
         return valString;
     }
+
 }
 
 
@@ -68,39 +68,32 @@ audio.addEventListener('ended', function () {
 
 function togglePlay() {
     if (isPlaying) {
-
-        //提交函数
-        submitQuiz();
-        //隐藏内容
-        hideText();
+        function submitConfirmation() {
+            var csW = document.getElementById("confirmationSubmitWindow");
+            csW.style.display = "flex";
+        }
+        submitConfirmation();
     }
 
     else {
         audio.play();
         showText();
+        controlBtn.innerHTML = "Submit";
+        isPlaying = true;
+
     }
-    isPlaying = !isPlaying;
+
 }
 
 
 
 
-//选择题+弹窗,放在音乐播放中
-//选择题+弹窗,放在音乐播放中
-//选择题+弹窗,放在音乐播放中
+//选择题总结答案，feedback弹窗
 function submitQuiz() {
-    var answers = [];
-    var form = document.getElementById("quiz-form");
-    var popup = document.createElement("div");
-    popup.id = "popup";
-    popup.style.position = 'absolute';
-    popup.style.top = '50%';
-    popup.style.left = '50%';
-    popup.style.transform = 'translate(-50%, -50%)';
-    popup.style.border = '3px solid gray';
-
 
     // 获取答案
+    var answers = [];
+    var form = document.getElementById("quiz-form");
     for (var i = 1; i <= 5; i++) {
         var radios = form.elements["q" + i];
         for (var j = 0; j < radios.length; j++) {
@@ -112,103 +105,98 @@ function submitQuiz() {
     }
 
     // 显示答案
-    var answerText = document.createElement("p");
-    answerText.innerHTML = "Thank you for your participation! <BR>Please make sure to answer every question.<br>Click the 'Copy' button below and send the copied content to your tester.<br>Click the right buttom to pause the music if you want.<br><br>Shadows Unveiled+ForestGump<br>Your answer is: <br>" + answers.join(", ") + "<br>";
-    popup.appendChild(answerText);
+    var answerID = document.getElementById("answer");
 
-    // 复制选项
-    var copyBtn = document.createElement("button");
-    copyBtn.innerHTML = "Copy";
-    copyBtn.style.width = "65px";
+    answerID.textContent = answers.join(", ");
+
+};
 
 
-    copyBtn.onclick = function () {
-
-    };
-
-    copyBtn.onclick = function () {
-        html2canvas(document.body).then(function (canvas) {
-            canvas.toBlob(function (blob) {
-                navigator.clipboard.write([new ClipboardItem({ "image/png": blob })]).then(function () {
-                    alert('Screenshot copied!');
-                });
-            }, 'image/png');
-        });
+// 复制整页
+function copyPage() {
+    html2canvas(document.body).then(function (canvas) {
+        canvas.toBlob(function (blob) {
+            navigator.clipboard.write([new ClipboardItem({ "image/png": blob })]).then(function () {
+                alert('Screenshot copied!');
+            });
+        }, 'image/png');
+    });
 
 
 
 
-    };
-    //暂停音乐
-    var pausemusicbtn =
-        document.createElement("button");
-    var playing2 = true;
-    pausemusicbtn.style.width = "65px"
-    pausemusicbtn.innerHTML = "Pause";
-    pausemusicbtn.onclick = function () {
-        if (playing2 == true) {
-            audio.pause();
-            pausemusicbtn.innerHTML = "Resume";
+};
 
-        }
 
-        else {
-            audio.play();
 
-            pausemusicbtn.innerHTML = "Pause";
-
-        }
-        playing2 = !playing2;
+//复制选项，是否暂停音乐
+var pausemusicbtnID = document.getElementById("musicPauseBtn");
+var playing2 = true;
+function ifPausemusic() {
+    if (playing2) {
+        audio.pause();
+        pausemusicbtnID.innerHTML = "Resume";
 
     }
 
-    popup.appendChild(copyBtn);
-    popup.appendChild(pausemusicbtn);
+    else {
+        audio.play();
 
+        pausemusicbtnID.innerHTML = "Pause";
 
-    // 显示弹窗
-    document.body.appendChild(popup);
-};
+    }
+    playing2 = !playing2;
 
-//隐藏文字,关闭计时器按钮
+}
+
+//隐藏试题,关闭计时器按钮，关闭提交确认框,feedback框显示
 function hideText() {
-    var pTag = document.getElementById("myParagraph");
-    pTag.style.display = "none";
+    var paragraphID = document.getElementById("myParagraph");
+    paragraphID.style.display = "none";
 
-    var pTaga = document.getElementById("control-btn");
-    pTaga.style.display = "none";
+    var controlBtnID = document.getElementById("control-btn");
+    controlBtnID.style.display = "none";
 
+    var confirmationSubmitID = document.getElementById("confirmationSubmitWindow");
+    confirmationSubmitID.style.display = "none";
+
+    var feedbackID = document.getElementById("feedback");
+    feedbackID.style.display = "flex";
 
 
 };
 
 //显示文字,隐藏notice
 function showText() {
-    var pTag = document.getElementById("myParagraph");
-    pTag.style.display = "flex";
-    var pTagb = document.getElementById("notice");
-    pTagb.style.display = "none";
+    var paragraph = document.getElementById("myParagraph");
+    paragraph.style.display = "flex";
+    var paragraphb = document.getElementById("notice");
+    paragraphb.style.display = "none";
 
 
 
 };
 
 
-//重新加载 退回确认
+//重新加载 退回/取消  弹窗显示
 function reloadConfirmation() {
     var modal = document.getElementById("confirmation-reload");
     modal.style.display = "flex";
 }
 function backConfirmation() {
-    var modal = document.getElementById("confirmation-back");
+    var modal = document.getElementById("confirmationBackWindow");
     modal.style.display = "flex";
 }
 
 function hideConfirmation() {
     var modal1 = document.getElementById("confirmation-reload");
     modal1.style.display = "none";
-    var modal2 = document.getElementById("confirmation-back");
+
+    var modal2 = document.getElementById("confirmationBackWindow");
     modal2.style.display = "none";
+
+    var modal3 = document.getElementById("confirmationSubmitWindow");
+    modal3.style.display = "none";
 }
 
 
