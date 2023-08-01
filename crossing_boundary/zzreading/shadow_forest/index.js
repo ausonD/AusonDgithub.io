@@ -1,3 +1,19 @@
+//遮盖层加载
+// 等待页面代码
+const loadingOverlay = document.getElementById('loadingOverlay');
+// 主网页内容
+const content = document.getElementById('content');
+// 监听页面加载完成事件
+window.addEventListener('load', function () {
+    // 隐藏等待页面，显示主网页内容
+    loadingOverlay.style.display = 'none';
+    content.style.display = 'block';
+});
+
+
+
+
+
 // 获取显示计时器的元素和按钮元素
 var timerEl = document.getElementById("timer");
 var controlBtn = document.getElementById("control-btn");
@@ -235,7 +251,7 @@ function resetValue() {
 
 
 function updateTime(value) {
-    timing = value * 1000;
+    timing = value * 2000;
     document.getElementById("timeValue").textContent = value;
 }
 
@@ -263,7 +279,6 @@ function scrollToBottom() {
         const scrollingBox = document.getElementById('mainParagraph');
         const scrollHeight = scrollingBox.scrollHeight; // 获取div的滚动高度
         let startTime = null;
-
         function scroll(timestamp) {
             if (!startTime) {
                 startTime = timestamp;
@@ -273,7 +288,8 @@ function scrollToBottom() {
             scrollingBox.scrollTo(0, progress * scrollHeight); // 平滑滚动到底部
 
             if (progress < 1) {
-                window.requestAnimationFrame(scroll); // 继续调用自身实现动画效果
+                window.requestAnimationFrame(scroll);
+                // 继续调用自身实现动画效果
                 // 增加额外的刷新次数
 
             }
