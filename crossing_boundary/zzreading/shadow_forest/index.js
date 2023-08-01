@@ -266,6 +266,7 @@ var scrollingInput = document.getElementById('scrollingInput');
 var scrollingCheckbox = document.getElementById('scrollingCheck');
 var inputElement999 = document.getElementById("estimatedTime");
 var isScrolling = true;
+var resetBtn = document.getElementById('resetBtn');
 
 
 
@@ -309,6 +310,7 @@ function scrollToBottom() {
 // 绑定按钮事件
 controlBtn.addEventListener("click", toggleTimer);
 controlBtn.addEventListener("click", togglePlay);
+var resetBtn = document.getElementById('resetBtn');
 
 
 scrollingCheckbox.addEventListener('change', () => {
@@ -332,8 +334,22 @@ controlBtn.addEventListener("click", function () {
     inputElement999.disabled = true;
     // 设置输入框的样式为灰色
     inputElement999.style.backgroundColor = "lightgray";
+
+
     scrollingCheckbox.disabled = true;
     scrollingCheckbox.style.backgroundColor = "lightgray";
+
+
+    paragraphFontSize.disabled = true;
+    paragraphFontSize.style.backgroundColor = "lightgray";
+
+
+    resetBtn.style.display = 'none';
+
+
+
+
+
     controlBtn.removeEventListener("click", toggleTimer);
 
 });

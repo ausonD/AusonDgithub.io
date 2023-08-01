@@ -7,7 +7,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel=stylesheet href="../css/READER.CSS">
         <script src="../js/html2canvas.min.js"></script>
-        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+        <link rel="shortcut icon" href="../image/music.png" type="image/x-icon">
         <link href="../../zzcss/globeFont.css" rel="stylesheet" />
 
         <title>Reading Test</title>
@@ -56,18 +56,27 @@
 
 
             <!-- 开始提示内容 -->
-            <div style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 490px; height: 180px; overflow: auto; padding:20px; ;border:2px solid gray ;font-size: 18px;"
-                id="notice">
+
+
+            <div style="  position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);" id="notice">
 
                 <b> Read following instructions carefully before the
                     test:<br><br></b>
-                <b style="color:red">0. USE GOOGLE CHROME TO FINISH THE TEST.</b><br>
-                1. Read the entire article before viewing the questions.
+                <b style="color:red">1. CHOOSE GOOGLE CHROME OR A CHROME-BASED BROWSER FOR THE TEST.<br>
+                    2. SET BROWSER ZOOM RATIO TO 100%. <br>
+                    3. IF YOU WANT TO ADJUST THE FONT SIZE, GO SETTINGS
+                    TO MAKE ADJUSTMENT.
+
+                </b><br>
+
+                3. Maximize the window of your browser for better data-collecting.
                 <br>
-                2. Limit your answering time to 15
-                minutes.<br>
-                3. Make sure to provide an answer for each question.<br>
-                4. Once you are ready, click "begin" button to start.
+                4. None of the settings in the upper-left corner can be adjusted after the start of the test.<br>
+                5. Make sure to provide an answer for each question.<br>
+                6. Once you are ready, click "begin" button to start.
             </div>
 
 
@@ -263,13 +272,13 @@
             <div id="settingPage"
                 style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); display: none; justify-content: center; align-items: center;z-index: 2">
                 <div
-                    style="background-color: #fff; padding: 13px; position: fixed;top: 115px;left: 50%;transform: translate(-50%, -50%);width: 50%;height: 230px;background-color: #fff;border-radius: 10px;box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);z-index: 3;box-sizing: border-box;">
+                    style="background-color: #fff; padding: 13px; position: fixed;top: 112px;left: 50%;transform: translate(-50%, -50%);width: 50%;height: 234px;background-color: #fff;border-radius: 10px;box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);z-index: 3;box-sizing: border-box;">
                     <b style="font-size: 150%;">Setting</b>
                     <!-- 字体大小 -->
                     <p>
                         <label for="paragraphFontNum">Font Size</label>
-                        <input type="range" id="paragraphFontNum" name="paragraphFontNum" min="12" max="45" value="18"
-                            step="2" oninput="updateFontSize(this.value)">
+                        <input type="range" id="paragraphFontNum" name="paragraphFontNum" min="12" max="32" value="18"
+                            step="1" oninput="updateFontSize(this.value)">
 
                         <output id="FontValue">18</output>
 
@@ -289,7 +298,7 @@
                     </p>
 
                     <!-- 退出按钮 -->
-                    <button style="margin-left:0px ;" onclick="resetValue()">Reset</button>
+                    <button style="margin-left:0px ;" onclick="resetValue()" id="resetBtn">Reset</button>
                     <button onclick="closeSettingPage()">Confirm</button>
 
                 </div>
