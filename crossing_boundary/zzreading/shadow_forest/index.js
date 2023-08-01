@@ -66,7 +66,7 @@ function pad(val) {
 // 音乐播放
 // 音乐播放
 // 音乐播放
-var audio = new Audio("../music/FG.mp3"); // 音乐文件路径
+var audio = new Audio("B.flac"); // 音乐文件路径
 var isPlaying = false;
 
 
@@ -240,18 +240,21 @@ function updateFontSize(value) {
 // 还原字体大小,时间长短
 var paragraphFontSize = document.getElementById("paragraphFontNum");
 var readingspeed999 = document.getElementById("estimatedTime");
+var scrollingCheckbox = document.getElementById('scrollingCheck');
 function resetValue() {
     paragraphFontSize.value = 18;
     updateFontSize(18);
     readingspeed999.value = 900;
+    readingspeed999.style.display = "block";
     updateTime(900);
+    scrollingCheckbox.checked = true;
 };
 
 
 
 function updateTime(value) {
     timing = value * 2000;
-    document.getElementById("timeValue").textContent = value;
+
 }
 
 
@@ -330,6 +333,10 @@ controlBtn.addEventListener("click", scrollToBottom);
 
 //禁用阅读时间输入框
 controlBtn.addEventListener("click", function () {
+    if (scrollingCheckbox.checked) {
+        paragraphFontSize.disabled = true;
+        paragraphFontSize.style.backgroundColor = "lightgray";
+    }
     // 禁用输入框
     inputElement999.disabled = true;
     // 设置输入框的样式为灰色
@@ -339,9 +346,6 @@ controlBtn.addEventListener("click", function () {
     scrollingCheckbox.disabled = true;
     scrollingCheckbox.style.backgroundColor = "lightgray";
 
-
-    paragraphFontSize.disabled = true;
-    paragraphFontSize.style.backgroundColor = "lightgray";
 
 
     resetBtn.style.display = 'none';
