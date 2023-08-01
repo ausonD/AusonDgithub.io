@@ -66,7 +66,7 @@ function pad(val) {
 // 音乐播放
 // 音乐播放
 // 音乐播放
-var audio = new Audio("B.flac"); // 音乐文件路径
+var audio = new Audio("../music/E_Sitting Down Here.mp3"); // 音乐文件路径
 var isPlaying = false;
 
 
