@@ -1,13 +1,11 @@
 //遮盖层加载
 // 等待页面代码
-const loadingOverlay = document.getElementById('loadingOverlay');
-// 主网页内容
-const content = document.getElementById('content');
-// 监听页面加载完成事件
-window.addEventListener('load', function () {
-    // 隐藏等待页面，显示主网页内容
-    loadingOverlay.style.display = 'none';
-    content.style.display = 'block';
+$(window).on('load', function () {
+    // 隐藏等待页面
+    $('#loadingOverlay').fadeOut(500);
+
+    // 显示主要内容
+    $('#content').fadeIn(1000);
 });
 
 

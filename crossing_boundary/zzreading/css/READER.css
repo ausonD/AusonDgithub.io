@@ -1,17 +1,5 @@
 @import url('../../zzcss/globeFont.css');
 
-/* 居中弹窗样式 */
-#popup {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: #fff;
-    border: 1px solid #ccc;
-    padding: 20px;
-    z-index: 999;
-}
-
 
 /*主阅读材料字体大小*/
 .text {
@@ -108,15 +96,4 @@ input[type=range]::-webkit-slider-thumb {
     font-size: 20px;
     font-weight: bold;
     color: #333;
-}
-
-/* CSS3动画定义 */
-@keyframes spin {
-    0% {
-        transform: rotate(0deg);
-    }
-
-    100% {
-        transform: rotate(360deg);
-    }
 }
