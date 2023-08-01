@@ -10,7 +10,7 @@ $(window).on('load', function () {
 
         // 显示主要内容
         $('#content').fadeIn(1000);
-    }, 1000);
+    }, 100);
 });
 
 
@@ -259,11 +259,13 @@ function updateFontSize(value) {
 var paragraphFontSize = document.getElementById("paragraphFontNum");
 var readingspeed999 = document.getElementById("estimatedTime");
 var scrollingCheckbox = document.getElementById('scrollingCheck');
+var resetBtn = document.getElementById('resetBtn');
+
 function resetValue() {
     paragraphFontSize.value = 18;
     updateFontSize(18);
     readingspeed999.value = 900;
-    readingspeed999.style.display = "inline-block";
+    scrollingInput.style.display = "inline";
     updateTime(900);
     scrollingCheckbox.checked = true;
 };
@@ -287,7 +289,6 @@ var scrollingInput = document.getElementById('scrollingInput');
 var scrollingCheckbox = document.getElementById('scrollingCheck');
 var inputElement999 = document.getElementById("estimatedTime");
 var isScrolling = true;
-var resetBtn = document.getElementById('resetBtn');
 
 
 
@@ -331,7 +332,7 @@ function scrollToBottom() {
 // 绑定按钮事件
 controlBtn.addEventListener("click", toggleTimer);
 controlBtn.addEventListener("click", togglePlay);
-var resetBtn = document.getElementById('resetBtn');
+resetBtn.addEventListener("click", resetValue);
 
 
 scrollingCheckbox.addEventListener('change', () => {
