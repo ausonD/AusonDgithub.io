@@ -13,7 +13,6 @@ window.addEventListener('load', function () {
 
 
 
-
 // 获取显示计时器的元素和按钮元素
 var timerEl = document.getElementById("timer");
 var controlBtn = document.getElementById("control-btn");
