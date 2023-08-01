@@ -326,7 +326,17 @@ scrollingCheckbox.addEventListener('change', () => {
 
 controlBtn.addEventListener("click", scrollToBottom);
 
+//禁用阅读时间输入框
+controlBtn.addEventListener("click", function () {
+    // 禁用输入框
+    inputElement999.disabled = true;
+    // 设置输入框的样式为灰色
+    inputElement999.style.backgroundColor = "lightgray";
+    scrollingCheckbox.disabled = true;
+    scrollingCheckbox.style.backgroundColor = "lightgray";
+    controlBtn.removeEventListener("click", toggleTimer);
 
+});
 
 
 
