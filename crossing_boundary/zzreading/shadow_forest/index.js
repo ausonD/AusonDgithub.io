@@ -1,16 +1,36 @@
-//遮盖层加载
 // 等待页面代码
-$(window).on('load', function () {
-    // 隐藏等待页面
-    $('#loadingOverlay').fadeOut(500);
+// 等待页面代码
+// 等待页面代码
 
-    // 显示主要内容
-    $('#content').fadeIn(1000);
+
+$(window).on('load', function () {
+    setTimeout(function () {
+        // 隐藏等待页面
+        $('#loadingOverlay').fadeOut(500);
+
+        // 显示主要内容
+        $('#content').fadeIn(1000);
+    }, 1000);
 });
 
 
 
+// 旋转代码
+const loader = document.querySelector('.loader');
 
+let rotation = 0;
+setInterval(() => {
+    rotation += 2;
+    loader.style.transform = `rotate(${rotation}deg)`;
+}, 2);
+
+// 旋转样式
+
+
+
+//正文
+//正文
+//正文
 // 获取显示计时器的元素和按钮元素
 var timerEl = document.getElementById("timer");
 var controlBtn = document.getElementById("control-btn");
