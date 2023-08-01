@@ -263,7 +263,7 @@ function resetValue() {
     paragraphFontSize.value = 18;
     updateFontSize(18);
     readingspeed999.value = 900;
-    readingspeed999.style.display = "block";
+    readingspeed999.style.display = "inline-block";
     updateTime(900);
     scrollingCheckbox.checked = true;
 };
