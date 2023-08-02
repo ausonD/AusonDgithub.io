@@ -2,10 +2,10 @@
 // 等待页面代码
 // 等待页面代码
 
+window.onload = function () {
+    audio.addEventListener("canplaythrough", function () {
 
-audio.addEventListener("canplaythrough", function () {
 
-    window.onload = function () {
 
         setTimeout(function () {
             // 隐藏等待页面
@@ -14,10 +14,10 @@ audio.addEventListener("canplaythrough", function () {
             // 显示主要内容
             $('#content').fadeIn(1000);
         }, 100);
-    };
+    });
 
 
-});
+};
 
 
 
