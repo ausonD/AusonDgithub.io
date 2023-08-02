@@ -1,20 +1,7 @@
 // 等待页面代码
 // 等待页面代码
 // 等待页面代码
-window.onload = async function () {
-    await Promise.all([
-        new Promise(resolve => {
-            // 阻塞加载的操作
-
-            resolve();
-        }),
-        new Promise(resolve => {
-            // 异步加载的操作
-
-            resolve();
-        })
-    ]);
-    // 所有同步和异步操作结束后要执行的函数
+window.onload = function () {
 
     setTimeout(function () {
         // 隐藏等待页面
