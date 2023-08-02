@@ -1,19 +1,34 @@
 // 等待页面代码
 // 等待页面代码
 // 等待页面代码
+window.onload = async function () {
+    await Promise.all([
+        new Promise(resolve => {
+            // 阻塞加载的操作
 
+            resolve();
+        }),
+        new Promise(resolve => {
+            // 异步加载的操作
 
-window.onload = function () {
-    // 所有同步和异步操作结束后要执行的函数
+            resolve();
+        })
+    ]);
 
-    setTimeout(function () {
-        // 隐藏等待页面
-        $('#loadingOverlay').fadeOut(500);
+    window.onload = function () {
+        // 所有同步和异步操作结束后要执行的函数
 
-        // 显示主要内容
-        $('#content').fadeIn(1000);
-    }, 100);
+        setTimeout(function () {
+            // 隐藏等待页面
+            $('#loadingOverlay').fadeOut(500);
+
+            // 显示主要内容
+            $('#content').fadeIn(1000);
+        }, 100);
+    };
+
 };
+
 
 
 
