@@ -84,7 +84,6 @@ function pad(val) {
 // 音乐播放
 // 音乐播放
 // 音乐播放
-var audio = new Audio("../music/E_Sitting Down Here.mp3"); // 音乐文件路径
 var isPlaying = false;
 
 
@@ -298,35 +297,108 @@ var isScrolling = true;
 //滚动函数
 function scrollToBottom() {
     if (scrollingCheckbox.checked) {
+
+        //以下为参数，a为刷新毫秒时间 b为检查时间
+        var a = 16;
+        var b = 1000;
+        //以下为命名
         const scrollingBox = document.getElementById('mainParagraph');
-        const scrollHeight = scrollingBox.scrollHeight; // 获取div的滚动高度
-        let startTime = null;
-        function scroll(timestamp) {
+        var scrollHeight = scrollingBox.scrollHeight;
+        var step = scrollHeight / (timing / a);
+        var startPoint = 0;
+        var moveBeginPoint = 0;
+        var currentPoint = 0;
+        var endPoint = scrollHeight - scrollingBox.clientHeight;
+        var isScrolling = false;
+        var isPaused = false;
+        var startTime = null;
+
+        function checkForMovement() {
+            currentPoint = scrollingBox.scrollTop;
+
+            if (Math.abs(currentPoint - startPoint) > step * 5) {
+                isScrolling = false;
+                isPaused = true;
+                pauseForMovement();
+            }
+
+            startPoint = currentPoint;
+
+        }
+
+        function pauseForMovement() {
+            startPoint = scrollingBox.scrollTop;
+            setTimeout(() => {
+                currentPoint = scrollingBox.scrollTop;
+                if (Math.abs(currentPoint - startPoint) > 5 * step) {
+                    pauseForMovement();
+                } else {
+                    isPaused = false;
+                    isScrolling = true;
+                    startTime = Date.now();
+                    moveBeginPoint = currentPoint;
+                    scrolling();
+                }
+            }, b);
+        }
+
+        function scrolling() {
             if (!startTime) {
-                startTime = timestamp;
+                startTime = Date.now();
             }
-            let timeElapsed = timestamp - startTime;
-            let progress = Math.min(timeElapsed / timing, 1); // n秒钟*1000内完成滚动
-            scrollingBox.scrollTo(0, progress * scrollHeight); // 平滑滚动到底部
 
-            if (progress < 1) {
-                window.requestAnimationFrame(scroll);
-                // 继续调用自身实现动画效果
-                // 增加额外的刷新次数
+
+            if (isScrolling) {
+                checkForMovement();
+
+                //检查是否触底
+                if (scrollingBox.scrollTop >= endPoint) {
+                    scrollingBox.scrollTo(0, scrollHeight);
+                    isScrolling = false;
+                    isPaused = true;
+                    checkAtBottom();
+                }
+
+
+                if (isScrolling) {
+
+                    scrollingBox.scrollTo(0, (Date.now() - startTime) * (step / a) + moveBeginPoint);
+                    setTimeout(scrolling, a);
+                }
+
 
             }
         }
+        //检查是否在底部，暂停滚动
+        function checkAtBottom() {
+            if (scrollingBox.scrollTop >= endPoint) {
+                setTimeout(() => {
+                    checkAtBottom();
+                }, b);
+            }
+            else {
+                isScrolling = true;
+                isPaused = false;
+                scrolling();
 
-        function startScrolling() {
-            window.requestAnimationFrame(scroll);
+
+            }
+
         }
 
-        setTimeout(startScrolling, 0); // 延迟10秒钟开始滚动
-        controlBtn.removeEventListener("click", scrollToBottom);
 
+        isScrolling = true;
+        scrolling();
     }
-};
 
+
+    controlBtn.removeEventListener("click", scrollToBottom);
+
+
+
+
+
+}
 
 
 // 绑定按钮事件
