@@ -14,20 +14,18 @@ window.onload = async function () {
             resolve();
         })
     ]);
+    // 所有同步和异步操作结束后要执行的函数
 
-    window.onload = function () {
-        // 所有同步和异步操作结束后要执行的函数
+    setTimeout(function () {
+        // 隐藏等待页面
+        $('#loadingOverlay').fadeOut(500);
 
-        setTimeout(function () {
-            // 隐藏等待页面
-            $('#loadingOverlay').fadeOut(500);
-
-            // 显示主要内容
-            $('#content').fadeIn(1000);
-        }, 100);
-    };
-
+        // 显示主要内容
+        $('#content').fadeIn(1000);
+    }, 100);
 };
+
+
 
 
 
