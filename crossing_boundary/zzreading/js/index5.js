@@ -3,7 +3,9 @@
 // 等待页面代码
 
 
-$(window).on('load', function () {
+window.onload = function () {
+    // 所有同步和异步操作结束后要执行的函数
+
     setTimeout(function () {
         // 隐藏等待页面
         $('#loadingOverlay').fadeOut(500);
@@ -11,7 +13,7 @@ $(window).on('load', function () {
         // 显示主要内容
         $('#content').fadeIn(1000);
     }, 100);
-});
+};
 
 
 
