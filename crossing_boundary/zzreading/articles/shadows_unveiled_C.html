@@ -7,14 +7,11 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="shortcut icon" href="../image/music.png" type="image/x-icon">
 
-
+        <script src="../js/html2canvas.min.js"></script>
+        <script src="../js/jquery-3.6.0.min.js"></script>
         <script> var audio = new Audio("../music/C_Sitting Down Here.mp3");
             // 音乐文件路径
         </script>
-        <script src="../js/html2canvas.min.js"></script>
-        <script src="../js/jquery-3.6.0.min.js"></script>
-
-
 
         <link href="../../zzcss/globeFont.css" rel="stylesheet" />
         <link rel=stylesheet href="../css/READER.CSS">
@@ -85,7 +82,7 @@
             <!-- 小图标 计时器 -->
 
             <div
-                style="background-color: #f6f6f6; justify-content: space-between;font-size: 18px; font-weight: bold; display: flex; align-items: center; padding: 10px; border-radius: 5px; box-shadow: 0 5px 10px rgba(0,0,0,0.1); line-height: 1;">
+                style="background-color: #f6f6f6; justify-content: space-between;font-size: 18px; font-weight: bold; display: flex; align-items: center; padding: 10px; border-radius: 5px; box-shadow: 0 5px 10px rgba(0,0,0,0.1); line-height: 1;z-index: 99999;">
 
 
 
@@ -121,12 +118,12 @@
             <div style="  position: absolute;
             top: 50%;
             left: 50%;
-            transform: translate(-50%, -50%); font-size: 18px;" id="notice">
+            transform: translate(-50%, -50%); font-size: 18px; border: gray solid 2px; padding: 15px;" id="notice">
 
                 <b> Before the test, please read following instructions carefully <br><br></b>
-                <b style="color:red">1. CHOOSE GOOGLE CHROME OR A CHROME-BASED BROWSER FOR THE TEST.<br> 3. CONFIGURE
+                <b style="color:red">1. CHOOSE GOOGLE CHROME OR A CHROME-BASED BROWSER FOR THE TEST.<br> 2. CONFIGURE
                     SETTINGS THROUGH THE ICON ON THE TOP LEFT CORNER.<br>
-                    2. SET BROWSER ZOOM RATIO TO 100%.
+                    3. SET BROWSER ZOOM RATIO TO 100%.
 
 
                 </b><br>
@@ -135,8 +132,10 @@
                 <br>
                 5. You can only choose whether to enable auto-scrolling before the start.<br>
                 6. If enabled, font size will be unchangeable throughout the test.<br>
-                7. Make sure to provide an answer for each question.<br>
-                8. Once you are ready, click "begin" button to start.
+                7. You can still pause auto-scrolling during the test.<br>
+                8. Make sure to provide an answer for each
+                question.<br>
+                9. Once you are ready, click "begin" button to start.
             </div>
 
 

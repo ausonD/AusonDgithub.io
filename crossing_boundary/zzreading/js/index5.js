@@ -363,9 +363,19 @@ function scrollToBottom() {
         }
 
         function scrolling() {
+
+
+
+
+
+
             if (!startTime) {
                 startTime = Date.now();
             }
+
+            if (!scrollingCheckbox.checked)
+                setTimeout(scrolling, 1000);
+
 
 
             if (isScrolling) {
@@ -453,9 +463,10 @@ controlBtn.addEventListener("click", function () {
     // 设置输入框的样式为灰色
     inputElement999.style.backgroundColor = "lightgray";
 
-
-    scrollingCheckbox.disabled = true;
-    scrollingCheckbox.style.backgroundColor = "lightgray";
+    if (!scrollingCheckbox.checked) {
+        scrollingCheckbox.disabled = true;
+        scrollingCheckbox.style.backgroundColor = "lightgray";
+    }
 
 
 
