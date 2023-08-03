@@ -11,6 +11,8 @@ function enterMinPage() {
             // 显示主要内容
             $('#content').fadeIn(1000);
         }, 100);
+
+
     }
     else {
         setTimeout(enterMinPage, 500);
@@ -267,26 +269,32 @@ function closeSettingPage() {
 var myParagraphID = document.getElementById("myParagraph");
 var noticeID = document.getElementById("notice");
 
+var fontSizee
 function updateFontSize(value) {
     myParagraphID.style.fontSize = value + "px";
     noticeID.style.fontSize = value + "px";
     // 更新字体大小范围滑动条的数值显示
     document.getElementById("FontValue").textContent = value;
+    var scrollHeight = scrollingBox.scrollHeight;
+    var step = scrollHeight / (timing / a);
+    var endPoint = scrollHeight - scrollingBox.clientHeight;
 };
 
 // 还原字体大小,时间长短
 var paragraphFontSize = document.getElementById("paragraphFontNum");
-var readingspeed999 = document.getElementById("estimatedTime");
+
 var scrollingCheckbox = document.getElementById('scrollingCheck');
 var resetBtn = document.getElementById('resetBtn');
 
 function resetValue() {
     paragraphFontSize.value = 18;
     updateFontSize(18);
-    readingspeed999.value = 900;
+    inputElement999.value = 900;
     scrollingInput.style.display = "inline";
     updateTime(900);
     scrollingCheckbox.checked = true;
+    inputElement999.disabled = false;
+    inputElement999.style.backgroundColor = "white";
 };
 
 
@@ -305,9 +313,7 @@ function updateTime(value) {
 var timing = 900000;
 
 var scrollingInput = document.getElementById('scrollingInput');
-var scrollingCheckbox = document.getElementById('scrollingCheck');
 var inputElement999 = document.getElementById("estimatedTime");
-var isScrolling = true;
 
 
 
@@ -316,11 +322,14 @@ var isScrolling = true;
 
 //滚动函数
 function scrollToBottom() {
+
+    controlBtn.removeEventListener("click", scrollToBottom);
+
     if (scrollingCheckbox.checked) {
 
         //以下为参数，a为刷新毫秒时间 b为检查时间
         var a = 16;
-        var b = 1000;
+        var b = 700;
         //以下为命名
         const scrollingBox = document.getElementById('mainParagraph');
         var scrollHeight = scrollingBox.scrollHeight;
@@ -332,6 +341,7 @@ function scrollToBottom() {
         var isScrolling = false;
         var isPaused = false;
         var startTime = null;
+        var fontRecord;
 
         function checkForMovement() {
             currentPoint = scrollingBox.scrollTop;
@@ -347,6 +357,7 @@ function scrollToBottom() {
         }
 
         function pauseForMovement() {
+            startTime = Date.now();
             startPoint = scrollingBox.scrollTop;
             setTimeout(() => {
                 currentPoint = scrollingBox.scrollTop;
@@ -357,6 +368,7 @@ function scrollToBottom() {
                     isScrolling = true;
                     startTime = Date.now();
                     moveBeginPoint = currentPoint;
+
                     scrolling();
                 }
             }, b);
@@ -364,23 +376,19 @@ function scrollToBottom() {
 
         function scrolling() {
 
+            //检查是否勾选了滚动
 
 
-
-
-
+            //赋予起始时间
             if (!startTime) {
                 startTime = Date.now();
             }
+            if (!scrollingCheckbox.checked) {
+                setTimeout(pauseForMovement, b);
+            }
 
-            if (!scrollingCheckbox.checked)
-                setTimeout(scrolling, 1000);
 
-
-
-            if (isScrolling) {
-                checkForMovement();
-
+            else {
                 //检查是否触底
                 if (scrollingBox.scrollTop >= endPoint) {
                     scrollingBox.scrollTo(0, scrollHeight);
@@ -390,15 +398,17 @@ function scrollToBottom() {
                 }
 
 
-                if (isScrolling) {
-
-                    scrollingBox.scrollTo(0, (Date.now() - startTime) * (step / a) + moveBeginPoint);
-                    setTimeout(scrolling, a);
-                }
+                checkForMovement();
 
 
+                scrollingBox.scrollTo(0, (Date.now() - startTime) * (step / a) + moveBeginPoint);
+                fontRecord = fontSizee;
+
+                setTimeout(scrolling, a);
             }
         }
+
+
         //检查是否在底部，暂停滚动
         function checkAtBottom() {
             if (scrollingBox.scrollTop >= endPoint) {
@@ -422,7 +432,7 @@ function scrollToBottom() {
     }
 
 
-    controlBtn.removeEventListener("click", scrollToBottom);
+
 
 
 
@@ -436,28 +446,40 @@ controlBtn.addEventListener("click", toggleTimer);
 controlBtn.addEventListener("click", togglePlay);
 resetBtn.addEventListener("click", resetValue);
 
+var isStart = false;
 
 scrollingCheckbox.addEventListener('change', () => {
     if (scrollingCheckbox.checked) {
-        isScrolling = true;
-        scrollingInput.style.display = 'block';
+        paragraphFontNum.disabled = true;
 
 
-    } else {
-        isScrolling = false;
-        scrollingInput.style.display = 'none';
+        if (!isStart) {
+            inputElement999.disabled = false;
+            inputElement999.style.backgroundColor = "white";
+        }
+        paragraphFontSize.value = 18;
+        updateFontSize(18);
+    }
+
+
+
+    if (!scrollingCheckbox.checked) {
+        inputElement999.disabled = true;
+        inputElement999.style.backgroundColor = "lightgray";
+        if (!isStart) {
+            paragraphFontNum.disabled = false;
+        }
+
     }
 });
+
 
 
 controlBtn.addEventListener("click", scrollToBottom);
 
 //禁用阅读时间输入框
 controlBtn.addEventListener("click", function () {
-    if (scrollingCheckbox.checked) {
-        paragraphFontSize.disabled = true;
-        paragraphFontSize.style.backgroundColor = "lightgray";
-    }
+    isStart = true;
     // 禁用输入框
     inputElement999.disabled = true;
     // 设置输入框的样式为灰色
@@ -466,6 +488,14 @@ controlBtn.addEventListener("click", function () {
     if (!scrollingCheckbox.checked) {
         scrollingCheckbox.disabled = true;
         scrollingCheckbox.style.backgroundColor = "lightgray";
+
+
+    }
+
+    else {
+        paragraphFontNum.disabled = true;
+        // 设置输入框的样式为灰色
+        paragraphFontNum.style.backgroundColor = "lightgray";
     }
 
 
