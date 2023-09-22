@@ -2,32 +2,41 @@
 <html>
 
     <head>
+        <link rel="shortcut icon" href="../image/music.png" type="image/x-icon">
+        <title>Reading Lottery</title>
+
         <script>
             window.addEventListener('DOMContentLoaded', redirectToPage);
 
             function startStop() {
                 var button = document.getElementById("lottery");
                 var result = document.getElementById("result");
-                var letters = ["College_Students_C", "College_Students_E", "College_Students_L", "College_Students_V", "shadows_unveiled_C", "shadows_unveiled_E", "shadows_unveiled_L", "shadows_unveiled_V", "The_Story_C", "The_Story_E", "The_Story_L", "The_Story_V",];
+                var letters = ["College_Students_C", "College_Students_E", "College_Students_L", "College_Students_V", "shadows_unveiled_C", "shadows_unveiled_E", "shadows_unveiled_L", "shadows_unveiled_V", "The_Story_C", "The_Story_E", "The_Story_L", "The_Story_V"];
 
                 if (button.innerText === "Start") {
                     button.innerText = "Stop";
                     var interval = setInterval(function () {
                         var randomIndex = Math.floor(Math.random() * letters.length);
                         result.innerText = letters[randomIndex];
-                    }, 80);
+                    }, 100);
 
                     button.onclick = function () {
                         clearInterval(interval);
                         button.style.visibility = "hidden";
                         var finalRandomIndex = Math.floor(Math.random() * letters.length);
                         result.innerText = letters[finalRandomIndex];
+                        setTimeout(function () {
+                            redirectToPage();
+                        }, 1000);
                     };
                 } else if (button.innerText === "Stop") {
                     clearInterval(interval);
                     button.style.display = "none";
                     var finalRandomIndex = Math.floor(Math.random() * letters.length);
                     result.innerText = letters[finalRandomIndex];
+                    setTimeout(function () {
+                        redirectToPage();
+                    }, 1000);
                 }
             }
 
@@ -36,29 +45,29 @@
 
                 // 根据不同的抽奖结果进行页面跳转
                 if (result === "College_Students_C") {
-                    window.location.href = "https://example.com/page1";
+                    window.location.href = "https://ausond.github.io/crossing_boundary/zzreading/articles/College_Students_C.html";
                 } else if (result === "College_Students_E") {
-                    window.location.href = "https://example.com/page2";
+                    window.location.href = "https://ausond.github.io/crossing_boundary/zzreading/articles/College_Students_E.html";
                 } else if (result === "College_Students_L") {
-                    window.location.href = "https://example.com/page3";
+                    window.location.href = "https://ausond.github.io/crossing_boundary/zzreading/articles/College_Students_L.html";
                 } else if (result === "College_Students_V") {
-                    window.location.href = "https://example.com/page4";
+                    window.location.href = "https://ausond.github.io/crossing_boundary/zzreading/articles/College_Students_V.html";
                 } else if (result === "shadows_unveiled_C") {
-                    window.location.href = "https://example.com/page5";
+                    window.location.href = "https://ausond.github.io/crossing_boundary/zzreading/articles/shadows_unveiled_C.html";
                 } else if (result === "shadows_unveiled_E") {
-                    window.location.href = "https://example.com/page6";
+                    window.location.href = "https://ausond.github.io/crossing_boundary/zzreading/articles/shadows_unveiled_E.html";
                 } else if (result === "shadows_unveiled_L") {
-                    window.location.href = "https://example.com/page7";
+                    window.location.href = "https://ausond.github.io/crossing_boundary/zzreading/articles/shadows_unveiled_L.html";
                 } else if (result === "shadows_unveiled_V") {
-                    window.location.href = "https://example.com/page8";
+                    window.location.href = "https://ausond.github.io/crossing_boundary/zzreading/articles/shadows_unveiled_V.html";
                 } else if (result === "The_Story_C") {
-                    window.location.href = "https://example.com/page9";
+                    window.location.href = "https://ausond.github.io/crossing_boundary/zzreading/articles/The_Story_C.html";
                 } else if (result === "The_Story_E") {
-                    window.location.href = "https://example.com/page10";
+                    window.location.href = "https://ausond.github.io/crossing_boundary/zzreading/articles/The_Story_E.html";
                 } else if (result === "The_Story_L") {
-                    window.location.href = "https://example.com/page11";
+                    window.location.href = "https://ausond.github.io/crossing_boundary/zzreading/articles/The_Story_L.html";
                 } else if (result === "The_Story_V") {
-                    window.location.href = "https://example.com/page12";
+                    window.location.href = "https://ausond.github.io/crossing_boundary/zzreading/articles/The_Story_V.html";
                 }
             }
         </script>
@@ -74,8 +83,6 @@
                 Start
             </button>
         </div>
-
-
     </body>
 
 </html>
