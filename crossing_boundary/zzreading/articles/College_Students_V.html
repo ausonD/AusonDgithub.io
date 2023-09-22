@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="shortcut icon" href="../image/music.png" type="image/x-icon">
+
+        <script src="../js/html2canvas.min.js"></script>
+        <script src="../js/jquery-3.6.0.min.js"></script>
+        <script> var audio = new Audio("../music/Void.mp3"); // 音乐文件路径
+        </script>
+
+
+        <link href="../../zzcss/globeFont.css" rel="stylesheet" />
+        <link rel=stylesheet href="../css/READER.CSS">
+
+
+        <title>Reading Test</title>
+    </head>
+
+    <style>
+        /* 加载动画 */
+        /* 加载动画 */
+        /* 加载动画 */
+        /* 加载动画 */
+        #loadingOverlay {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            height: 100%;
+            background-color: #fff;
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            text-align: center;
+        }
+
+        #alertSentence {
+            margin-top: 20px;
+            font-size: 20px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        #loadingOverlay .loader {
+            border: 8px solid #f3f3f3;
+            border-top: 8px solid #003950;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            animation: spin 0.6s linear infinite;
+        }
+
+
+
+        /* CSS3动画定义 */
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+
+    <body>
+        <!-- 等待加载遮盖层 -->
+        <div id="loadingOverlay">
+            <div class="loader"></div>
+            <p id="alertSentence">Please wait until the music is fully loaded.</p>
+        </div>
+
+        <div id="content" style="display: none;">
+            <!-- 小图标 计时器 -->
+
+            <div
+                style="background-color: #f6f6f6; justify-content: space-between;font-size: 18px; font-weight: bold; display: flex; align-items: center; padding: 10px; border-radius: 5px; box-shadow: 0 5px 10px rgba(0,0,0,0.1); line-height: 1;z-index: 99999;">
+
+
+
+                <img src="../image/back.png" alt="Back" style="float: left; width: 30px;" onclick="backConfirmation()">
+
+                <span style="width: 7px;"></span>
+
+                <img src="../image/reload.png" alt="Reload" style="float: left; width: 23px"
+                    onclick="reloadConfirmation()">
+
+                <span style="width: 11px;"></span>
+
+                <img src="../image/setting.png" alt="setting" style="float: left; width: 23px" id="setting"
+                    onclick="openSettingPage()">
+
+
+
+
+                <!--  计时器 -->
+
+                <span style="margin: 0 auto; z-index: 2;">
+                    <span id="timer" style="margin-right: 10px;">00:00:00</span>
+                    <button id="control-btn"
+                        style="font-size: 14px; padding: 6px 12px; background-color: #003950; color: #fff; border: none; border-radius: 3px; cursor: pointer;">Begin</button>
+                </span>
+            </div>
+
+
+
+            <!-- 开始提示内容 -->
+
+
+            <div style="  position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%); font-size: 18px; border: gray solid 2px; padding: 15px;" id="notice">
+
+                <b> Before the test, please read following instructions carefully <br><br></b>
+                <b style="color:red">1. CHOOSE GOOGLE CHROME OR A CHROME-BASED BROWSER FOR THE TEST.<br> 2. CONFIGURE
+                    SETTINGS THROUGH THE ICON ON THE TOP LEFT CORNER.<br>
+                    3. SET BROWSER ZOOM RATIO TO 100%.
+
+
+                </b><br>
+
+                4. Maximize the window of your browser for better data-collecting.
+                <br>
+                5. You can only choose whether to enable auto-scrolling before the start.<br>
+                6. If enabled, font size will be unchangeable throughout the test.<br>
+                7. You can still pause auto-scrolling during the test.<br>
+                8. Make sure to provide an answer for each
+                question.<br>
+                9. Once you are ready, click "begin" button to start.
+            </div>
+
+
+
+
+
+            <!-- 正文文本框 -->
+            <div style="display: none; height: 90vh;padding-left:20px;padding-right:20px;font-size: 18px;"
+                id="myParagraph">
+                <div style="flex: 1; overflow: auto; padding: 20px; border: 3px solid #b6b5b2 ;border-right: 1.5px; flex-basis: 60%; "
+                    id="mainParagraph">
+                    <h1>College Students Are Stressed Out</h1>
+                    <p class="text">(1) College students are more stressed out than ever before---at least according to
+                        the
+                        latest findings of a large, national survey that has been conducted annually for the last 25
+                        years.
+                        The survey includes more than 200,000 students attending nearly 300 colleges and asks them to
+                        rate
+                        how their own mental health stacks up with their classmates’---for example, is it “above
+                        average” or
+                        in the “highest 10%”?</p>
+                    <p class="text">(2) This somewhat unusual methodology typically results in the statistical Lake
+                        Woebegon
+                        effect in which most people tend to overestimate themselves in relation to others (it refers to
+                        the
+                        fictional Lake Woebegon, where “all the women are strong, all the men are good-looking and all
+                        the
+                        children are above average”). But the most recent results indicate that fewer and fewer freshmen
+                        feel like they are in top form in terms of coping with stress.
+                    </p>
+                    <p class="text">(3) A quarter century ago, nearly 70% of freshmen put themselves in the top 10% of
+                        mentally stable people in their class; today only 52% rate themselves that highly, down 3 points
+                        since last year. Students’ self-esteem, however, is still strong: a full 71% of freshmen put
+                        themselves in the top 10% in terms of academic abilities. It’s hard to know what these numbers
+                        actually mean: obviously, it’s not mathematically possible for 52% or 71% of people to be in the
+                        top
+                        10% of anything. And, as I explored earlier, people’s attempts to compare themselves with others
+                        are
+                        skewed in various ways. Nevertheless, the finding is in line with previous research, which found
+                        that almost half of all college students who seek counseling now have a major mental illness.
+                        That’s
+                        more than double the rate seen 10 years ago.</p>
+                    <p class="text">(4) So what’s going on? Obviously, the economy and high unemployment rate make for a
+                        scary time to be in college, potentially facing terrifying levels of debt--that alone could
+                        account
+                        for the increase in stress.</p>
+                    <p class="text">(5) Secondly, a much more rigorous large study recently found that empathy among
+                        college
+                        students had declined 40% since 2000--and since caring relationships are essential to mental and
+                        physical health, a decline in empathy could also produce a decline in mental health and coping.
+                    </p>
+                    <p class="text">(6)My final point brings us back to my earlier post on a Stanford study that looked
+                        at
+                        the psychological effects of comparing ourselves to others. It found that the way
+                        people tend to conceal their negative emotions while broadcasting their happy ones
+                        makes the rest of us feel somehow "less than"--as though all our friends and
+                        neighbors have better lives than we do. Social media sites like Facebook and
+                        Twitter seem to have made these comparisons even more harmful by providing the
+                        perfect venue through which people can continually present a perfect version of
+                        themselves.
+
+                    </p>
+                    <p class="text">(7) This phenomenon, too, might tie into why the new survey, "The American
+                        Freshman: National Norms," found that students are feeling less confident about
+                        their level of emotional and mental stability. If all the students around you are
+                        desperately trying to put on a happy face--and you perceive that face as a true
+                        reflection of their inner selves, even as you work to hide your own sadness---well,
+                        it’s not surprising that so many students might be getting a bit stressed out.
+                    </p>
+                    <p class="text">(8)Instead, if students were encouraged to feel safe expressing their honest
+                        emotions,
+                        even about their fears and failures, everyone might feel more connected, happier--
+                        -and, yes, healthier.</p>
+
+                </div>
+                <div
+                    style="flex: 1; overflow: auto; padding: 20px; border: 3px solid #b6b5b2;border-left: 1.5px;flex-basis: 40%;">
+                    <h1>Questions</h1>
+                    <form id="quiz-form">
+                        <p class="question">1.Most people tend to overestimate themselves in relation to others.</p>
+                        <label><input type="radio" name="q1" value="A">True</label><br>
+                        <label><input type="radio" name="q1" value="B">False</label><br>
+
+
+                        <p class="question">2.According to a Stanford study, people tend to broadcast their happy
+                            emotions,
+                            as well as negative ones sometimes.</p>
+                        <label><input type="radio" name="q2" value="A">True</label><br>
+                        <label><input type="radio" name="q2" value="B">False</label><br>
+
+                        <p class="question">3.Which of the following factors doesn’t account for the increase in stress?
+                        </p>
+                        <label><input type="radio" name="q3" value="A">The economy</label><br>
+                        <label><input type="radio" name="q3" value="B">A decline in empathy</label><br>
+                        <label><input type="radio" name="q3" value="C">High unemployment</label><br>
+                        <label><input type="radio" name="q3" value="D">Robust self-esteem</label><br>
+                        <label><input type="radio" name="q3" value="E">Terrifying levels of debt</label><br>
+
+                        <p class="question">4.How do you understand Facebook and Twitter provide “the perfect venue”?
+                        </p>
+                        <label><input type="radio" name="q4" value="A">A place you can express your own
+                            ideas</label><br>
+                        <label><input type="radio" name="q4" value="B">A place you can appreciate other people’s
+                            life</label><br>
+                        <label><input type="radio" name="q4" value="C">A place you can present a perfect version of
+                            yourself</label><br>
+                        <label><input type="radio" name="q4" value="D">A place you can find perfect suggestions to
+                            improve
+                            your life</label><br>
+                        <label><input type="radio" name="q4" value="E">A place you don’t have to compare with
+                            others</label><br>
+
+                        <p class="question">5.What’s the author’s attitude towards expressing one’s honest emotions?
+                        </p>
+                        <label><input type="radio" name="q5" value="A">It’s beneficial both emotionally and
+                            physically</label><br>
+                        <label><input type="radio" name="q5" value="B">The influence needs to be studied
+                            further</label><br>
+                        <label><input type="radio" name="q5" value="C">It’s harmful to interpersonal
+                            relationships</label><br>
+                        <label><input type="radio" name="q5" value="D">Students should express their honest emotions
+                            except
+                            fears and failures</label><br>
+                        <label><input type="radio" name="q5" value="E">It hasn’t been mentioned in the article
+                        </label><br>
+                    </form>
+
+                </div>
+            </div>
+            <!--确认重新加载/退回/提交/提交后显示框-->
+
+            <!--feedback-->
+            <div id="feedback"
+                style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); height:10%x;width: 40%; padding:15px;border:3px solid gray;display: none">
+                <div>
+                    <span>
+                        Thank you for your participation! <BR>Please make sure to answer every question.<br>Click the
+                        'Copy'
+                        button below and send the copied content to your tester.<br>Click the right buttom to pause the
+                        music if you want.<br><br>shadows_unveiled_V<br>Your answers are:</span>
+
+                    <div id="answer"> </div>
+
+
+
+
+
+
+                    <div style="height: 25px;"></div>
+                    <button onclick="copyPage()" style="width:70px">Copy</button>
+                    <button id="musicPauseBtn" onclick="ifPausemusic()" style="width:70px">Pause</button>
+                </div>
+
+            </div>
+            <!--重新加载-->
+            <div id="confirmation-reload"
+                style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); display: none; justify-content: center; align-items: center;">
+                <div style="background-color: #fff; padding: 20px; border-radius: 5px;">
+                    <p>Reload the page</p>
+                    <button onclick="hideConfirmation()">Cancel</button>
+                    <button onclick="location.reload(); return false;">Confirm</button>
+                </div>
+            </div>
+            <!--回退-->
+
+            <div id="confirmationBackWindow"
+                style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); display: none; justify-content: center; align-items: center;">
+                <div style="background-color: #fff; padding: 20px; border-radius: 5px;">
+                    <p>Return to the Reading Test</p>
+                    <button onclick="hideConfirmation()">Cancel</button>
+                    <button
+                        onclick="window.location.href='https&#58;&#47;&#47;ausond.github.io/crossing_boundary/index.php/reading-test.html'">Confirm</button>
+                </div>
+            </div>
+
+            <!--确认提交-->
+            <div id="confirmationSubmitWindow"
+                style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); display: none; justify-content: center; align-items: center;">
+                <div style="background-color: #fff; padding: 20px; border-radius: 5px;">
+                    <p>Submit the paper</p>
+                    <button onclick="hideConfirmation()">Cancel</button>
+                    <button id="submitConformBtn" onclick="submitQuiz();hideText();toggleTimer();">Confirm</button>
+                </div>
+            </div>
+
+            <!--设置页面-->
+
+            <div id="settingPage"
+                style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); display: none; justify-content: center; align-items: center;z-index: 2">
+                <div
+                    style="background-color: #fff; padding: 13px; position: fixed;top: 112px;left: 50%;transform: translate(-50%, -50%);width: 50%;height: 234px;background-color: #fff;border-radius: 10px;box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);z-index: 3;box-sizing: border-box;">
+                    <b style="font-size: 150%;">Settings</b>
+                    <!-- 字体大小 -->
+                    <p>
+                        <label for="paragraphFontNum">Font Size</label>
+                        <input type="range" id="paragraphFontNum" name="paragraphFontNum" min="12" max="32" value="18"
+                            step="1" oninput="updateFontSize(this.value)">
+
+                        <output id="FontValue">18</output>
+
+                    </p>
+                    <!-- scrolling速度-->
+                    <p id="scrollingInput">
+                        <label for="estimatedTime"> Estimated Time (seconds)</label>
+                        <input type="value" id="estimatedTime" name="estimatedTime" value="900" disabled="true"
+                            oninput="updateTime(this.value)">
+
+                    </p>
+                    <!-- 是否开启scrolling-->
+                    <p>
+                        <label for="scrolling">Enable Auto-scrolling</label>
+                        <input type="checkbox" id="scrollingCheck" name="scrollingCheck">
+
+                    </p>
+
+                    <!-- 退出按钮 -->
+                    <button style="margin-left:0px ;" id="resetBtn">Reset</button>
+                    <button onclick="closeSettingPage()">Confirm</button>
+
+                </div>
+            </div>
+
+
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <!--script 链接-->
+
+
+    </body>
+    <script src="../js/index5.js"></script>
+
+
+</html>
