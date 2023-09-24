@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <title>计时器</title>
+        <script>
+            var timer;
+            var startTime;
+            var elapsedTime = 0;
+            var isRunning = false;
+
+            function startTimer() {
+                if (!isRunning) {
+                    startTime = new Date().getTime() - elapsedTime;
+                    timer = setInterval(updateTimer, 100);
+                    isRunning = true;
+                }
+            }
+
+            function pauseTimer() {
+                if (isRunning) {
+                    clearInterval(timer);
+                    isRunning = false;
+                }
+            }
+
+            function updateTimer() {
+                var currentTime = new Date().getTime();
+                elapsedTime = currentTime - startTime;
+                var formattedTime = formatTime(elapsedTime);
+                document.getElementById("timer").innerHTML = formattedTime;
+            }
+
+            function formatTime(time) {
+                var minutes = Math.floor(time / 60000);
+                var seconds = Math.floor((time % 60000) / 1000);
+                var milliseconds = Math.floor((time % 1000) / 10);
+
+                if (minutes < 10) minutes = "0" + minutes;
+                if (seconds < 10) seconds = "0" + seconds;
+                if (milliseconds < 10) milliseconds = "0" + milliseconds;
+
+                return minutes + ":" + seconds + ":" + milliseconds;
+            }
+
+            function recordTime() {
+                var currentTime = new Date().getTime();
+                var recordedTime = formatTime(currentTime - startTime);
+                var recordElement = document.createElement("li");
+                recordElement.innerHTML = recordedTime;
+                document.getElementById("records").appendChild(recordElement);
+            }
+        </script>
+    </head>
+
+    <body>
+        <h1>计时器</h1>
+        <div id="timer">00:00:00</div>
+        <button onclick="startTimer()">开始/继续</button>
+        <button onclick="pauseTimer()">暂停</button>
+        <button onclick="recordTime()">记录时间</button>
+        <ul id="records"></ul>
+    </body>
+
+</html>

@@ -157,7 +157,7 @@ function submitQuiz() {
     // 显示答案
     var answerID = document.getElementById("answer");
 
-    answerID.textContent = answers.join(", ");
+    answerID.textContent = answers.join(", ") + "\n " + currentTimer;
 
 };
 
@@ -509,14 +509,14 @@ controlBtn.addEventListener("click", function () {
     controlBtn.removeEventListener("click", toggleTimer);
 
 });
-
-
+var currentTimer
 function showQuestion() {
     var quizDiv = document.getElementById("quizDiv");
     var showButton = document.getElementById("showButton");
 
     quizDiv.style.display = "block";
     showButton.style.display = "none";
+    currentTimer = document.getElementById("timer").innerHTML
 }
 
 
