@@ -233,54 +233,60 @@
             </div>
             <div
                 style="flex: 1; overflow: auto; padding: 20px; border: 3px solid #b6b5b2;border-left: 1.5px;flex-basis: 40%;">
-                <h1>Questions</h1>
-                <form id="quiz-form">
-                    <p class="question">1. Mrs. Mallard's sister, Josephine, told Mrs. Mallard the news in a strong
-                        tone.</p>
-                    <label><input type="radio" name="q1" value="A">True</label><br>
-                    <label><input type="radio" name="q1" value="B">False</label><br>
+                <button id="showButton" onclick="showQuestion()"
+                    style="position: absolute; top: 50%; left: 79%; transform: translate(-50%, -50%);font-size: 14px; padding: 6px 12px; background-color: #003950; color: #fff; border: none; border-radius: 3px; cursor: pointer;">Show</button>
+
+                <div id="quizDiv" style="display: none;">
+                    <h1>Questions</h1>
+                    <form id="quiz-form">
+                        <p class="question">1. Mrs. Mallard's sister, Josephine, told Mrs. Mallard the news in a strong
+                            tone.</p>
+                        <label><input type="radio" name="q1" value="A">True</label><br>
+                        <label><input type="radio" name="q1" value="B">False</label><br>
 
 
-                    <p class="question">2. Brently Mallard (Mrs. Mallard's husband) really died in a railroad
-                        disaster.</p>
-                    <label><input type="radio" name="q2" value="A">True</label><br>
-                    <label><input type="radio" name="q2" value="B">False</label><br>
+                        <p class="question">2. Brently Mallard (Mrs. Mallard's husband) really died in a railroad
+                            disaster.</p>
+                        <label><input type="radio" name="q2" value="A">True</label><br>
+                        <label><input type="radio" name="q2" value="B">False</label><br>
 
-                    <p class="question">3. How does Mrs. Mallard react to the news of her husband's death?</p>
-                    <label><input type="radio" name="q3" value="A">She becomes angry and starts smashing
-                        things.</label><br>
-                    <label><input type="radio" name="q3" value="B">She sits in silence and does not believe the news
-                        is true.</label><br>
-                    <label><input type="radio" name="q3" value="C">She does not react.</label><br>
-                    <label><input type="radio" name="q3" value="D">She weeps and goes to her room where she is
-                        alone.</label><br>
-                    <label><input type="radio" name="q3" value="E">She sat in the armchair and then paced the room
-                        for a while.</label><br>
+                        <p class="question">3. How does Mrs. Mallard react to the news of her husband's death?</p>
+                        <label><input type="radio" name="q3" value="A">She becomes angry and starts smashing
+                            things.</label><br>
+                        <label><input type="radio" name="q3" value="B">She sits in silence and does not believe the news
+                            is true.</label><br>
+                        <label><input type="radio" name="q3" value="C">She does not react.</label><br>
+                        <label><input type="radio" name="q3" value="D">She weeps and goes to her room where she is
+                            alone.</label><br>
+                        <label><input type="radio" name="q3" value="E">She sat in the armchair and then paced the room
+                            for a while.</label><br>
 
-                    <p class="question">4. What does “Her fancy was running riot along those days ahead of her”
-                        mean?</p>
-                    <label><input type="radio" name="q4" value="A">Mrs. Mallard imagined her future in a violent
-                        way.</label><br>
-                    <label><input type="radio" name="q4" value="B">Mrs. Mallard allowed her imagination of future to
-                        develop.</label><br>
-                    <label><input type="radio" name="q4" value="C">Mrs. Mallard stopped dreaming about the
-                        future.</label><br>
-                    <label><input type="radio" name="q4" value="D">Mrs. Mallard’s vision of the future is very
-                        unrealistic.</label><br>
-                    <label><input type="radio" name="q4" value="E">Mrs. Mallard refused to imagine her future
-                        life.</label><br>
+                        <p class="question">4. What does “Her fancy was running riot along those days ahead of her”
+                            mean?</p>
+                        <label><input type="radio" name="q4" value="A">Mrs. Mallard imagined her future in a violent
+                            way.</label><br>
+                        <label><input type="radio" name="q4" value="B">Mrs. Mallard allowed her imagination of future to
+                            develop.</label><br>
+                        <label><input type="radio" name="q4" value="C">Mrs. Mallard stopped dreaming about the
+                            future.</label><br>
+                        <label><input type="radio" name="q4" value="D">Mrs. Mallard’s vision of the future is very
+                            unrealistic.</label><br>
+                        <label><input type="radio" name="q4" value="E">Mrs. Mallard refused to imagine her future
+                            life.</label><br>
 
-                    <p class="question">Which of the following best describes Mrs. Mallard's mood change?</p>
-                    <label><input type="radio" name="q5" value="A">sorrowful→ fearful→ excited→
-                        desperate</label><br>
-                    <label><input type="radio" name="q5" value="B">sad→ calm→ surprised→ excited</label><br>
-                    <label><input type="radio" name="q5" value="C">sorrowful→ mad→ calm→ joyful</label><br>
-                    <label><input type="radio" name="q5" value="D">sad→ struggling→ fearful→ stunned</label><br>
-                    <label><input type="radio" name="q5" value="E">sorrowful→ fearful→ surprised→ joyful
-                    </label><br>
-                </form>
+                        <p class="question">Which of the following best describes Mrs. Mallard's mood change?</p>
+                        <label><input type="radio" name="q5" value="A">sorrowful→ fearful→ excited→
+                            desperate</label><br>
+                        <label><input type="radio" name="q5" value="B">sad→ calm→ surprised→ excited</label><br>
+                        <label><input type="radio" name="q5" value="C">sorrowful→ mad→ calm→ joyful</label><br>
+                        <label><input type="radio" name="q5" value="D">sad→ struggling→ fearful→ stunned</label><br>
+                        <label><input type="radio" name="q5" value="E">sorrowful→ fearful→ surprised→ joyful
+                        </label><br>
+                    </form>
+                </div>
             </div>
         </div>
+
 
         <!--确认重新加载/退回/提交/提交后显示框-->
 

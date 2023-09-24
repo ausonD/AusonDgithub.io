@@ -199,48 +199,63 @@
             </div>
             <div
                 style="flex: 1; overflow: auto; padding: 20px; border: 3px solid #b6b5b2;border-left: 1.5px;flex-basis: 40%;">
-                <h1>Questions</h1>
-                <form id="quiz-form">
-                    <p class="question">1.Most people tend to overestimate themselves in relation to others.</p>
-                    <label><input type="radio" name="q1" value="A">True</label><br>
-                    <label><input type="radio" name="q1" value="B">False</label><br>
+
+                <button id="showButton" onclick="showQuestion()"
+                    style="position: absolute; top: 50%; left: 79%; transform: translate(-50%, -50%);font-size: 14px; padding: 6px 12px; background-color: #003950; color: #fff; border: none; border-radius: 3px; cursor: pointer;">Show</button>
+
+                <div id="quizDiv" style="display: none;">
+                    <h1>Questions</h1>
+
+                    <form id="quiz-form">
+
+                        <p class="question">1.Most people tend to overestimate themselves in relation to others.</p>
+                        <label><input type="radio" name="q1" value="A">True</label><br>
+                        <label><input type="radio" name="q1" value="B">False</label><br>
 
 
-                    <p class="question">2.According to a Stanford study, people tend to broadcast their happy emotions,
-                        as well as negative ones sometimes.</p>
-                    <label><input type="radio" name="q2" value="A">True</label><br>
-                    <label><input type="radio" name="q2" value="B">False</label><br>
+                        <p class="question">2.According to a Stanford study, people tend to broadcast their happy
+                            emotions,
+                            as well as negative ones sometimes.</p>
+                        <label><input type="radio" name="q2" value="A">True</label><br>
+                        <label><input type="radio" name="q2" value="B">False</label><br>
 
-                    <p class="question">3.Which of the following factors doesn’t account for the increase in stress?</p>
-                    <label><input type="radio" name="q3" value="A">The economy</label><br>
-                    <label><input type="radio" name="q3" value="B">A decline in empathy</label><br>
-                    <label><input type="radio" name="q3" value="C">High unemployment</label><br>
-                    <label><input type="radio" name="q3" value="D">Robust self-esteem</label><br>
-                    <label><input type="radio" name="q3" value="E">Terrifying levels of debt</label><br>
+                        <p class="question">3.Which of the following factors doesn’t account for the increase in stress?
+                        </p>
+                        <label><input type="radio" name="q3" value="A">The economy</label><br>
+                        <label><input type="radio" name="q3" value="B">A decline in empathy</label><br>
+                        <label><input type="radio" name="q3" value="C">High unemployment</label><br>
+                        <label><input type="radio" name="q3" value="D">Robust self-esteem</label><br>
+                        <label><input type="radio" name="q3" value="E">Terrifying levels of debt</label><br>
 
-                    <p class="question">4.How do you understand Facebook and Twitter provide “the perfect venue”?</p>
-                    <label><input type="radio" name="q4" value="A">A place you can express your own ideas</label><br>
-                    <label><input type="radio" name="q4" value="B">A place you can appreciate other people’s
-                        life</label><br>
-                    <label><input type="radio" name="q4" value="C">A place you can present a perfect version of
-                        yourself</label><br>
-                    <label><input type="radio" name="q4" value="D">A place you can find perfect suggestions to improve
-                        your life</label><br>
-                    <label><input type="radio" name="q4" value="E">A place you don’t have to compare with
-                        others</label><br>
+                        <p class="question">4.How do you understand Facebook and Twitter provide “the perfect venue”?
+                        </p>
+                        <label><input type="radio" name="q4" value="A">A place you can express your own
+                            ideas</label><br>
+                        <label><input type="radio" name="q4" value="B">A place you can appreciate other people’s
+                            life</label><br>
+                        <label><input type="radio" name="q4" value="C">A place you can present a perfect version of
+                            yourself</label><br>
+                        <label><input type="radio" name="q4" value="D">A place you can find perfect suggestions to
+                            improve
+                            your life</label><br>
+                        <label><input type="radio" name="q4" value="E">A place you don’t have to compare with
+                            others</label><br>
 
-                    <p class="question">5.What’s the author’s attitude towards expressing one’s honest emotions? </p>
-                    <label><input type="radio" name="q5" value="A">It’s beneficial both emotionally and
-                        physically</label><br>
-                    <label><input type="radio" name="q5" value="B">The influence needs to be studied further</label><br>
-                    <label><input type="radio" name="q5" value="C">It’s harmful to interpersonal
-                        relationships</label><br>
-                    <label><input type="radio" name="q5" value="D">Students should express their honest emotions except
-                        fears and failures</label><br>
-                    <label><input type="radio" name="q5" value="E">It hasn’t been mentioned in the article
-                    </label><br>
-                </form>
-
+                        <p class="question">5.What’s the author’s attitude towards expressing one’s honest emotions?
+                        </p>
+                        <label><input type="radio" name="q5" value="A">It’s beneficial both emotionally and
+                            physically</label><br>
+                        <label><input type="radio" name="q5" value="B">The influence needs to be studied
+                            further</label><br>
+                        <label><input type="radio" name="q5" value="C">It’s harmful to interpersonal
+                            relationships</label><br>
+                        <label><input type="radio" name="q5" value="D">Students should express their honest emotions
+                            except
+                            fears and failures</label><br>
+                        <label><input type="radio" name="q5" value="E">It hasn’t been mentioned in the article
+                        </label><br>
+                    </form>
+                </div>
             </div>
         </div>
 

@@ -511,8 +511,13 @@ controlBtn.addEventListener("click", function () {
 });
 
 
+function showQuestion() {
+    var quizDiv = document.getElementById("quizDiv");
+    var showButton = document.getElementById("showButton");
 
-
+    quizDiv.style.display = "block";
+    showButton.style.display = "none";
+}
 
 
 

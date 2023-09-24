@@ -227,48 +227,59 @@
                 </div>
                 <div
                     style="flex: 1; overflow: auto; padding: 20px; border: 3px solid #b6b5b2;border-left: 1.5px;flex-basis: 40%;">
-                    <h1>Questions</h1>
-                    <form id="quiz-form">
-                        <p class="question">1.Kael was expelled from the Order of the Whispering Winds. </p>
-                        <label><input type="radio" name="q1" value="A">True</label><br>
-                        <label><input type="radio" name="q1" value="B">False</label><br>
+                    <button id="showButton" onclick="showQuestion()"
+                        style="position: absolute; top: 50%; left: 79%; transform: translate(-50%, -50%);font-size: 14px; padding: 6px 12px; background-color: #003950; color: #fff; border: none; border-radius: 3px; cursor: pointer;">Show</button>
+
+                    <div id="quizDiv" style="display: none;">
+                        <h1>Questions</h1>
+
+                        <form id="quiz-form">
+                            <p class="question">1.Kael was expelled from the Order of the Whispering Winds. </p>
+                            <label><input type="radio" name="q1" value="A">True</label><br>
+                            <label><input type="radio" name="q1" value="B">False</label><br>
 
 
-                        <p class="question">2. Kael defeated his betrayer in a climactic battle. </p>
-                        <label><input type="radio" name="q2" value="A">True</label><br>
-                        <label><input type="radio" name="q2" value="B">False</label><br>
+                            <p class="question">2. Kael defeated his betrayer in a climactic battle. </p>
+                            <label><input type="radio" name="q2" value="A">True</label><br>
+                            <label><input type="radio" name="q2" value="B">False</label><br>
 
-                        <p class="question">3. Kael have to confront on his journey towards redemption except </p>
-                        <label><input type="radio" name="q3" value="A">People in Crimson Brotherhood.</label><br>
-                        <label><input type="radio" name="q3" value="B">Unpredictable weather.</label><br>
-                        <label><input type="radio" name="q3" value="C">Treacherous landscapes.</label><br>
-                        <label><input type="radio" name="q3" value="D">His own inner demons.</label><br>
-                        <label><input type="radio" name="q3" value="E">Ancient mysteries.</label><br>
+                            <p class="question">3. Kael have to confront on his journey towards redemption except </p>
+                            <label><input type="radio" name="q3" value="A">People in Crimson Brotherhood.</label><br>
+                            <label><input type="radio" name="q3" value="B">Unpredictable weather.</label><br>
+                            <label><input type="radio" name="q3" value="C">Treacherous landscapes.</label><br>
+                            <label><input type="radio" name="q3" value="D">His own inner demons.</label><br>
+                            <label><input type="radio" name="q3" value="E">Ancient mysteries.</label><br>
 
-                        <p class="question">4. What does the word "crucible" (paragraph 7) mean in the context of the
-                            passage? </p>
-                        <label><input type="radio" name="q4" value="A">A difficult test or trial.</label><br>
-                        <label><input type="radio" name="q4" value="B">A container used for melting metals.</label><br>
-                        <label><input type="radio" name="q4" value="C">A place of darkness and despair.</label><br>
-                        <label><input type="radio" name="q4" value="D">A symbol of honor and triumph.</label><br>
-                        <label><input type="radio" name="q4" value="E">A secret gathering or meeting place.</label><br>
+                            <p class="question">4. What does the word "crucible" (paragraph 7) mean in the context of
+                                the
+                                passage? </p>
+                            <label><input type="radio" name="q4" value="A">A difficult test or trial.</label><br>
+                            <label><input type="radio" name="q4" value="B">A container used for melting
+                                metals.</label><br>
+                            <label><input type="radio" name="q4" value="C">A place of darkness and despair.</label><br>
+                            <label><input type="radio" name="q4" value="D">A symbol of honor and triumph.</label><br>
+                            <label><input type="radio" name="q4" value="E">A secret gathering or meeting
+                                place.</label><br>
 
-                        <p class="question">5. What is the main idea of the passage?</p>
-                        <label><input type="radio" name="q5" value="A">The power of forgiveness and
-                            redemption.</label><br>
-                        <label><input type="radio" name="q5" value="B">The harsh and unforgiving land of
-                            Aridium.</label><br>
-                        <label><input type="radio" name="q5" value="C">The journey of self-discovery and personal
-                            growth.</label><br>
-                        <label><input type="radio" name="q5" value="D">The ancient wisdom and teachings of the Order of
-                            the
-                            Whispering Winds.</label><br>
-                        <label><input type="radio" name="q5" value="E">The triumph of an outcast over adversity.
-                        </label><br>
-                    </form>
+                            <p class="question">5. What is the main idea of the passage?</p>
+                            <label><input type="radio" name="q5" value="A">The power of forgiveness and
+                                redemption.</label><br>
+                            <label><input type="radio" name="q5" value="B">The harsh and unforgiving land of
+                                Aridium.</label><br>
+                            <label><input type="radio" name="q5" value="C">The journey of self-discovery and personal
+                                growth.</label><br>
+                            <label><input type="radio" name="q5" value="D">The ancient wisdom and teachings of the Order
+                                of
+                                the
+                                Whispering Winds.</label><br>
+                            <label><input type="radio" name="q5" value="E">The triumph of an outcast over adversity.
+                            </label><br>
+                        </form>
 
+                    </div>
                 </div>
             </div>
+
 
             <!--确认重新加载/退回/提交/提交后显示框-->
 
@@ -277,9 +288,11 @@
                 style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); height:10%x;width: 40%; padding:15px;border:3px solid gray;display: none">
                 <div>
                     <span>
-                        Thank you for your participation! <BR>Please make sure to answer every question.<br>Click the
+                        Thank you for your participation! <BR>Please make sure to answer every question.<br>Click
+                        the
                         'Copy'
-                        button below and send the copied content to your tester.<br>Click the right buttom to pause the
+                        button below and send the copied content to your tester.<br>Click the right buttom to pause
+                        the
                         music if you want.<br><br>shadows_unveiled_L<br>Your answers are:</span>
 
                     <div id="answer"> </div>
