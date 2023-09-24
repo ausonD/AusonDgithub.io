@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="shortcut icon" href="../image/music.png" type="image/x-icon">
+
+        <script src="../js/html2canvas.min.js"></script>
+        <script src="../js/jquery-3.6.0.min.js"></script>
+        <script> var audio = new Audio("../music/Void.mp3"); // 音乐文件路径
+        </script>
+
+
+        <link href="../../zzcss/globeFont.css" rel="stylesheet" />
+        <link rel=stylesheet href="../css/READER.CSS">
+
+
+        <title>Reading Test</title>
+    </head>
+
+    <style>
+        /* 加载动画 */
+        /* 加载动画 */
+        /* 加载动画 */
+        /* 加载动画 */
+        #loadingOverlay {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            height: 100%;
+            background-color: #fff;
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            text-align: center;
+        }
+
+        #alertSentence {
+            margin-top: 20px;
+            font-size: 20px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        #loadingOverlay .loader {
+            border: 8px solid #f3f3f3;
+            border-top: 8px solid #003950;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            animation: spin 0.6s linear infinite;
+        }
+
+
+
+        /* CSS3动画定义 */
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+
+    <body>
+        <!-- 等待加载遮盖层 -->
+        <div id="loadingOverlay">
+            <div class="loader"></div>
+            <p id="alertSentence">Please wait until the music is fully loaded.</p>
+        </div>
+
+        <div id="content" style="display: none;">
+            <!-- 小图标 计时器 -->
+
+            <div
+                style="background-color: #f6f6f6; justify-content: space-between;font-size: 18px; font-weight: bold; display: flex; align-items: center; padding: 10px; border-radius: 5px; box-shadow: 0 5px 10px rgba(0,0,0,0.1); line-height: 1;z-index: 99999;">
+
+
+
+                <img src="../image/back.png" alt="Back" style="float: left; width: 30px;" onclick="backConfirmation()">
+
+                <span style="width: 7px;"></span>
+
+                <img src="../image/reload.png" alt="Reload" style="float: left; width: 23px"
+                    onclick="reloadConfirmation()">
+
+                <span style="width: 11px;"></span>
+
+                <img src="../image/setting.png" alt="setting" style="float: left; width: 23px" id="setting"
+                    onclick="openSettingPage()">
+
+
+
+
+                <!--  计时器 -->
+
+                <span style="margin: 0 auto; z-index: 2;">
+                    <span id="timer" style="margin-right: 10px;">00:00:00</span>
+                    <button id="control-btn"
+                        style="font-size: 14px; padding: 6px 12px; background-color: #003950; color: #fff; border: none; border-radius: 3px; cursor: pointer;">Begin</button>
+                </span>
+            </div>
+
+
+
+            <!-- 开始提示内容 -->
+
+
+            <div style="  position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%); font-size: 18px; border: gray solid 2px; padding: 15px;" id="notice">
+
+                <b> Before the test, please read following instructions carefully <br><br></b>
+                <b style="color:red">1. CHOOSE GOOGLE CHROME OR A CHROME-BASED BROWSER FOR THE TEST.<br> 2. CONFIGURE
+                    SETTINGS THROUGH THE ICON ON THE TOP LEFT CORNER.<br>
+                    3. SET BROWSER ZOOM RATIO TO 100%.
+
+
+                </b><br>
+
+                4. Maximize the window of your browser for better data-collecting.
+                <br>
+                5. You can only choose whether to enable auto-scrolling before the start.<br>
+                6. If enabled, font size will be unchangeable throughout the test.<br>
+                7. You can still pause auto-scrolling during the test.<br>
+                8. Make sure to provide an answer for each
+                question.<br>
+                9. Once you are ready, click "begin" button to start.
+            </div>
+
+
+
+
+
+            <!-- 正文文本框 -->
+            <div style="display: none; height: 90vh;padding-left:20px;padding-right:20px;font-size: 18px;"
+                id="myParagraph">
+                <div style="flex: 1; overflow: auto; padding: 20px; border: 3px solid #b6b5b2 ;border-right: 1.5px; flex-basis: 60%; "
+                    id="mainParagraph">
+                    <h1>Speed Test</h1>
+                    <p class="text">(1) Economists also breeze past their own notions of freedom to contract. Economists
+                        are trained that the labor market presents to workers a trade-off between the value of leisure
+                        and the value of wages to buy things. They do not seriously consider or model that for many
+                        workers, leisure is not really an option. To economists, the famous Johnny Paycheck song “Take
+                        This Job and Shove It” cannot really resonate with the way many workers feel, because economists
+                        believe workers always have the freedom to choose leisure over work, and so are always free to
+                        tell their bosses to “shove it.” This belief makes economists slow to recognize the meaning of
+                        “living paycheck to paycheck,” or to understand the implications of households having no
+                        liquidity.</p>
+                    <p class="text">(2) Lacking the understanding of the weak bargaining position of millions of workers
+                        to freely contract their labor, economists instead interpret low wages as low skills. Indeed,
+                        economists’ use of the word “unskilled” to describe the low-wage workforce is actually an
+                        epithet: unskilled workers “deserve” low wages; they have no distinguishable skills and are
+                        therefore interchangeable, and if they suffer any unemployment from the friction of switching
+                        jobs, that can be ignored as the “natural rate” of unemployment, which cannot be lowered without
+                        igniting accelerating inflation. Moreover, if the unskilled cannot find jobs, their resulting
+                        unemployment is structural—just the machinations of “creative destruction” that replaces less
+                        productive humans with more productive technologies. Better still, unemployment then becomes an
+                        incentive for low-wage workers to get trained and join the high-wage workforce. That’s how
+                        economists understand unemployment. They choose not to interpret the fact that the temporary
+                        loss of millions of private- sector service worker jobs was in fact a trade-off to benefit
+                        society by lowering the spread of the disease—and therefore worthy of compensation for lost
+                        income.</p>
+                    <p class="text">(3) Service workers have largely been, in the United States, slaves or recent
+                        immigrants, and mostly women: they cook, they serve our food, they clean, they groom people,
+                        they make beds, they take care of children and older adults—in short “they” serve “us.” Modern
+                        economics was founded in the late nineteenth and early twentieth centuries by people who deeply
+                        believed in eugenics, and viewed the races of service workers as inferior races. These
+                        foundational beliefs still infect the discipline, even if the beliefs themselves appear to have
+                        dissipated. Economics as a discipline thus serves to rationalize—to make rationale, via givens
+                        and models—the disdain of economists for service workers that has its origins in racism.
+                    </p>
+                    <p class="text">(4) Perhaps this helps to explain why, despite lots of recent research showing that
+                        raising the minimum wage (which dominates the wage setting mechanism in service-sector jobs)
+                        would be good, so many economists insist that raising the wage would be counterproductive.
+                        Economists equate value with money—cheap things have little value and thus cannot be essential.
+                        To them, a rising minimum wage simply interrupts the market-clearing mechanism that pays workers
+                        a lower wage
+
+                        where supply and demand meet, so the number of service workers hired would fall. So despite the
+                        pandemic forcing many people to appreciate the skill with which their favorite restaurant meals
+                        were prepared or their children were tended, economists continue to wave off that workforce as
+                        unskilled. Paying “low skill” workers more would only encourage people to be lazy about
+                        acquiring skills; so, economists cannot admit into their theories or models the centrality of
+                        these workers’ jobs or industries.
+
+                        Economics William E.Spriggs
+
+                    </p>
+
+                </div>
+                <div
+                    style="flex: 1; overflow: auto; padding: 20px; border: 3px solid #b6b5b2;border-left: 1.5px;flex-basis: 40%;">
+
+
+                    <div id="quizDiv" style="display: none;">
+                        <h1>Questions</h1>
+                        <form id="quiz-form">
+                            <p class="question">1. Mrs. Mallard's sister, Josephine, told Mrs. Mallard the news in a
+                                strong
+                                tone.</p>
+                            <label><input type="radio" name="q1" value="A">True</label><br>
+                            <label><input type="radio" name="q1" value="B">False</label><br>
+
+
+                            <p class="question">2. Brently Mallard (Mrs. Mallard's husband) really died in a railroad
+                                disaster.</p>
+                            <label><input type="radio" name="q2" value="A">True</label><br>
+                            <label><input type="radio" name="q2" value="B">False</label><br>
+
+                            <p class="question">3. How does Mrs. Mallard react to the news of her husband's death?</p>
+                            <label><input type="radio" name="q3" value="A">She becomes angry and starts smashing
+                                things.</label><br>
+                            <label><input type="radio" name="q3" value="B">She sits in silence and does not believe the
+                                news
+                                is true.</label><br>
+                            <label><input type="radio" name="q3" value="C">She does not react.</label><br>
+                            <label><input type="radio" name="q3" value="D">She weeps and goes to her room where she is
+                                alone.</label><br>
+                            <label><input type="radio" name="q3" value="E">She sat in the armchair and then paced the
+                                room
+                                for a while.</label><br>
+
+                            <p class="question">4. What does “Her fancy was running riot along those days ahead of her”
+                                mean?</p>
+                            <label><input type="radio" name="q4" value="A">Mrs. Mallard imagined her future in a violent
+                                way.</label><br>
+                            <label><input type="radio" name="q4" value="B">Mrs. Mallard allowed her imagination of
+                                future to
+                                develop.</label><br>
+                            <label><input type="radio" name="q4" value="C">Mrs. Mallard stopped dreaming about the
+                                future.</label><br>
+                            <label><input type="radio" name="q4" value="D">Mrs. Mallard’s vision of the future is very
+                                unrealistic.</label><br>
+                            <label><input type="radio" name="q4" value="E">Mrs. Mallard refused to imagine her future
+                                life.</label><br>
+
+                            <p class="question">Which of the following best describes Mrs. Mallard's mood change?</p>
+                            <label><input type="radio" name="q5" value="A">sorrowful→ fearful→ excited→
+                                desperate</label><br>
+                            <label><input type="radio" name="q5" value="B">sad→ calm→ surprised→ excited</label><br>
+                            <label><input type="radio" name="q5" value="C">sorrowful→ mad→ calm→ joyful</label><br>
+                            <label><input type="radio" name="q5" value="D">sad→ struggling→ fearful→ stunned</label><br>
+                            <label><input type="radio" name="q5" value="E">sorrowful→ fearful→ surprised→ joyful
+                            </label><br>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!--确认重新加载/退回/提交/提交后显示框-->
+
+            <!--feedback-->
+            <div id="feedback"
+                style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); height:10%x;width: 40%; padding:15px;border:3px solid gray;display: none">
+                <div>
+                    <span>
+                        Thank you for your participation! <BR>Please make sure to answer every question.<br>Click
+                        the
+                        'Copy'
+                        button below and send the copied content to your tester.<br>Click the right buttom to pause
+                        the
+                        music if you want.<br><br>shadows_unveiled_V<br>Your answers are:</span>
+
+                    <div id="answer"> </div>
+
+
+
+
+
+
+                    <div style="height: 25px;"></div>
+                    <button onclick="copyPage()" style="width:70px">Copy</button>
+                    <button id="musicPauseBtn" onclick="ifPausemusic()" style="width:70px">Pause</button>
+                </div>
+
+            </div>
+            <!--重新加载-->
+            <div id="confirmation-reload"
+                style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); display: none; justify-content: center; align-items: center;">
+                <div style="background-color: #fff; padding: 20px; border-radius: 5px;">
+                    <p>Reload the page</p>
+                    <button onclick="hideConfirmation()">Cancel</button>
+                    <button onclick="location.reload(); return false;">Confirm</button>
+                </div>
+            </div>
+            <!--回退-->
+
+            <div id="confirmationBackWindow"
+                style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); display: none; justify-content: center; align-items: center;">
+                <div style="background-color: #fff; padding: 20px; border-radius: 5px;">
+                    <p>Return to the Reading Test</p>
+                    <button onclick="hideConfirmation()">Cancel</button>
+                    <button
+                        onclick="window.location.href='https&#58;&#47;&#47;ausond.github.io/crossing_boundary/index.php/reading-test.html'">Confirm</button>
+                </div>
+            </div>
+
+            <!--确认提交-->
+            <div id="confirmationSubmitWindow"
+                style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); display: none; justify-content: center; align-items: center;">
+                <div style="background-color: #fff; padding: 20px; border-radius: 5px;">
+                    <p>Submit the paper</p>
+                    <button onclick="hideConfirmation()">Cancel</button>
+                    <button id="submitConformBtn" onclick="submitQuiz();hideText();toggleTimer();">Confirm</button>
+                </div>
+            </div>
+
+            <!--设置页面-->
+
+            <div id="settingPage"
+                style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); display: none; justify-content: center; align-items: center;z-index: 2">
+                <div
+                    style="background-color: #fff; padding: 13px; position: fixed;top: 112px;left: 50%;transform: translate(-50%, -50%);width: 50%;height: 234px;background-color: #fff;border-radius: 10px;box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);z-index: 3;box-sizing: border-box;">
+                    <b style="font-size: 150%;">Settings</b>
+                    <!-- 字体大小 -->
+                    <p>
+                        <label for="paragraphFontNum">Font Size</label>
+                        <input type="range" id="paragraphFontNum" name="paragraphFontNum" min="12" max="32" value="18"
+                            step="1" oninput="updateFontSize(this.value)">
+
+                        <output id="FontValue">18</output>
+
+                    </p>
+                    <!-- scrolling速度-->
+                    <p id="scrollingInput">
+                        <label for="estimatedTime"> Estimated Time (seconds)</label>
+                        <input type="value" id="estimatedTime" name="estimatedTime" value="900" disabled="true"
+                            oninput="updateTime(this.value)">
+
+                    </p>
+                    <!-- 是否开启scrolling-->
+                    <p>
+                        <label for="scrolling">Enable Auto-scrolling</label>
+                        <input type="checkbox" id="scrollingCheck" name="scrollingCheck">
+
+                    </p>
+
+                    <!-- 退出按钮 -->
+                    <button style="margin-left:0px ;" id="resetBtn">Reset</button>
+                    <button onclick="closeSettingPage()">Confirm</button>
+
+                </div>
+            </div>
+
+
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <!--script 链接-->
+
+
+    </body>
+    <script src="../js/index5.js"></script>
+
+
+</html>
