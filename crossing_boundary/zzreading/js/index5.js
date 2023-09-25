@@ -157,7 +157,7 @@ function submitQuiz() {
     // 显示答案
     var answerID = document.getElementById("answer");
 
-    answerID.textContent = answers.join(", ") + "/n" + currentTimer;
+    answerID.textContent = answers.join(", ") + "\n" + currentTimer;
 
 };
 
